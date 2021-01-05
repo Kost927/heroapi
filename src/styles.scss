@@ -98,6 +98,10 @@ input {
   padding: 0.5rem;
   color: #fff;
   background: black;
+
+  &:disabled {
+    background: rgb(95, 94, 94);
+  }
 }
 
 .validation {

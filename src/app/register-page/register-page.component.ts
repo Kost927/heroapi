@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../shared/services/auth.service';
+import { NewUser } from './../shared/services/interfaces/interface';
 import { PasswordValidate } from './../shared/passwordValidate';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +14,7 @@ import constants from '../shared/constants';
 export class RegisterPageComponent implements OnInit {
   registerForm: FormGroup;
 
-  constructor() {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -35,9 +38,19 @@ export class RegisterPageComponent implements OnInit {
   }
 
   submit(): void {
-    console.log('form submitted', this.registerForm);
-    const formData = { ...this.registerForm.value };
-    console.log('formData---->', formData);
-    // this.registerForm.reset();
+    if (this.registerForm.invalid) {
+      return;
+    }
+
+    const newUser: NewUser = {
+      id: Date.now(),
+      email: this.registerForm.value.email,
+      password: this.registerForm.value.password,
+      name: this.registerForm.value.name,
+    };
+
+    this.auth.registration(newUser);
+
+    this.router.navigate(['/success']);
   }
 }
