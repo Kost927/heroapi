@@ -4,4 +4,6 @@ export default {
   PASSWORD_VALIDATE:
     '(?=.*[\\d])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[\\d\\w!@#$%^&*]{5,}',
   NAME_VALIDATE: '^[a-zA-Z\\s|-]*$',
+  EXPIRE_MASSAGE:
+    'Your current session has expired. Please login again to continue using this app!',
 };

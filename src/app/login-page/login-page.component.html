@@ -13,21 +13,14 @@
           formControlName="email"
         />
       </div>
-      <div
-        class="validation"
-        *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched"
-      >
-        <small
-          class="validate-msg"
-          *ngIf="loginForm.get('email').errors.required"
+      <div class="validation" *ngIf="ngIfEmailValidation()">
+        <small class="validate-msg" *ngIf="ngIfEmailRequired()"
           >This field is required.</small
         >
-        <small class="validate-msg" *ngIf="loginForm.get('email').errors.email"
+        <small class="validate-msg" *ngIf="ngIfEmail()"
           >Should write a valid email.</small
         >
-        <small
-          class="validate-msg"
-          *ngIf="loginForm.get('email').errors.emailValidator"
+        <small class="validate-msg" *ngIf="ngIfEmailExist()"
           >This email doesn't exist</small
         >
       </div>
@@ -44,20 +37,11 @@
           formControlName="password"
         />
       </div>
-      <div
-        class="validation"
-        *ngIf="
-          loginForm.get('password').invalid && loginForm.get('password').touched
-        "
-      >
-        <small
-          class="validate-msg"
-          *ngIf="loginForm.get('password').errors.required"
+      <div class="validation" *ngIf="ngIfPasswordValidation()">
+        <small class="validate-msg" *ngIf="ngIfPasswordRequired()"
           >This field is required.</small
         >
-        <small
-          class="validate-msg"
-          *ngIf="loginForm.get('password').errors.passwordValidator"
+        <small class="validate-msg" *ngIf="ngIfPasswordExist()"
           >Wrong password</small
         >
       </div>

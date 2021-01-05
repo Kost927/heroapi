@@ -11,7 +11,7 @@ export class SuccessfullyRegisteredComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  goToLoginPage() {
+  goToLoginPage(): void {
     this.router.navigate(['/']);
   }
 }

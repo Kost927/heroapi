@@ -40,7 +40,7 @@ export class AuthService {
     return fetchLogin$.pipe(tap(this.setToken));
   }
 
-  logout() {
+  logout(): void {
     localStorage.removeItem('expireDate');
     localStorage.removeItem('token');
     localStorage.removeItem('user');

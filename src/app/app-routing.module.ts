@@ -1,6 +1,6 @@
+import { HeroSelectionComponent } from './hero-selection/hero-selection.component';
 import { ExpireMsgComponent } from './expire-msg/expire-msg.component';
 import { SuccessfullyRegisteredComponent } from './successfully-registered/successfully-registered.component';
-import { TestComponentComponent } from './test-component/test-component.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
@@ -15,8 +15,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: '/login', pathMatch: 'full' },
       {
-        path: 'test',
-        component: TestComponentComponent,
+        path: 'heroselect',
+        component: HeroSelectionComponent,
         canActivate: [AuthGuard],
       },
       {

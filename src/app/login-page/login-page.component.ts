@@ -14,10 +14,15 @@ import { User } from '../shared/services/interfaces/interface';
 })
 export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
-  signIn = false;
+  signIn: boolean = false;
 
   constructor(private router: Router, private auth: AuthService) {}
+
   ngOnInit(): void {
+    this.loginFormValidate();
+  }
+
+  loginFormValidate(): void {
     this.loginForm = new FormGroup({
       email: new FormControl('', [
         Validators.required,
@@ -31,36 +36,72 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
-  navigateToRegisterPage() {
+  navigateToRegisterPage(): void {
     this.router.navigate(['/register']);
   }
 
-  submitLogin() {
+  submitLogin(): void {
     if (this.loginForm.invalid) {
       return;
     }
 
     this.signIn = true;
 
+    const { email, password } = this.loginForm.value;
+
     const user: User = {
-      email: this.loginForm.value.email,
-      password: this.loginForm.value.password,
+      email,
+      password,
     };
 
     const allUsers = JSON.parse(localStorage.getItem('allUsers'));
-    allUsers.forEach((el) => {
-      if (
-        el.email === this.loginForm.value.email &&
-        el.password === this.loginForm.value.password
-      ) {
-        this.auth.login(user).subscribe((value) => {
-          this.loginForm.reset();
-          this.router.navigate(['/test']);
-        });
+
+    allUsers.forEach(({ email, password }) => {
+      if (email === email && password === password) {
+        this.authLoginSubscribe(user);
         localStorage.setItem('user', JSON.stringify(user));
       }
     });
 
     this.signIn = false;
+  }
+
+  authLoginSubscribe(user: User): void {
+    this.auth.login(user).subscribe((value) => {
+      this.router.navigate(['/heroselect']);
+    });
+  }
+
+  ngIfEmailValidation(): boolean {
+    return (
+      this.loginForm.get('email').invalid && this.loginForm.get('email').touched
+    );
+  }
+
+  ngIfEmailRequired(): void {
+    return this.loginForm.get('email').errors.required;
+  }
+
+  ngIfEmail(): void {
+    return this.loginForm.get('email').errors.email;
+  }
+
+  ngIfEmailExist(): void {
+    return this.loginForm.get('email').errors.emailValidator;
+  }
+
+  ngIfPasswordValidation(): boolean {
+    return (
+      this.loginForm.get('password').invalid &&
+      this.loginForm.get('password').touched
+    );
+  }
+
+  ngIfPasswordRequired(): void {
+    return this.loginForm.get('password').errors.required;
+  }
+
+  ngIfPasswordExist(): void {
+    return this.loginForm.get('password').errors.passwordValidator;
   }
 }

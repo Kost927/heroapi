@@ -8,9 +8,9 @@ import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
-import { TestComponentComponent } from './test-component/test-component.component';
 import { SuccessfullyRegisteredComponent } from './successfully-registered/successfully-registered.component';
 import { ExpireMsgComponent } from './expire-msg/expire-msg.component';
+import { HeroSelectionComponent } from './hero-selection/hero-selection.component';
 
 @NgModule({
   declarations: [
@@ -18,9 +18,9 @@ import { ExpireMsgComponent } from './expire-msg/expire-msg.component';
     LoginPageComponent,
     MainLayoutComponent,
     RegisterPageComponent,
-    TestComponentComponent,
     SuccessfullyRegisteredComponent,
     ExpireMsgComponent,
+    HeroSelectionComponent,
   ],
   imports: [
     BrowserModule,

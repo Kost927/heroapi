@@ -13,30 +13,18 @@
           autocomplete="on"
         />
       </div>
-      <div
-        class="validation"
-        *ngIf="
-          registerForm.get('name').invalid && registerForm.get('name').touched
-        "
-      >
-        <small
-          class="validate-msg"
-          *ngIf="registerForm.get('name').errors.pattern"
+      <div class="validation" *ngIf="ngIfNameValidate()">
+        <small class="validate-msg" *ngIf="ngIfNamePattern()"
           >No special symbols or numbers allowed.</small
         >
-        <small
-          class="validate-msg"
-          *ngIf="registerForm.get('name').errors.minlength"
-        >
+        <small class="validate-msg" *ngIf="ngIfNameMinLength()">
           Should be at least
-          {{ registerForm.get("name").errors.minlength.requiredLength }}
+          {{ ngIfNameRequiredLength() }}
           characters length. Now
-          {{ registerForm.get("name").errors.minlength.actualLength }}
+          {{ ngIfNameActualLength() }}
           characters.</small
         >
-        <small
-          class="validate-msg"
-          *ngIf="registerForm.get('name').errors.required"
+        <small class="validate-msg" *ngIf="ngIfNameRequired()"
           >This field is required.</small
         >
       </div>
@@ -54,26 +42,14 @@
           autocomplete="on"
         />
       </div>
-      <div
-        class="validation"
-        *ngIf="
-          registerForm.get('email').invalid && registerForm.get('email').touched
-        "
-      >
-        <small
-          class="validate-msg"
-          *ngIf="registerForm.get('email').errors.required"
+      <div class="validation" *ngIf="ngIfEmailValidate()">
+        <small class="validate-msg" *ngIf="ngIfEmailRequired()"
           >This field is required.</small
         >
-        <small
-          class="validate-msg"
-          *ngIf="registerForm.get('email').errors.email"
+        <small class="validate-msg" *ngIf="ngIfEmail()"
           >Should write a valid email.</small
         >
-        <small
-          class="validate-msg"
-          *ngIf="registerForm.get('email').errors.pattern"
-        >
+        <small class="validate-msg" *ngIf="ngIfEmailPattern()">
           Supports only (.com, .net, .org, .co, .us) domains, only 5 symbols
           after @ allowed, no more than 3 dots before @</small
         >
@@ -92,46 +68,23 @@
           autocomplete="on"
         />
       </div>
-      <div
-        class="validation"
-        *ngIf="
-          registerForm.get('password').invalid &&
-          registerForm.get('password').touched
-        "
-      >
-        <small
-          class="validate-msg"
-          *ngIf="registerForm.get('password').errors.required"
+      <div class="validation" *ngIf="ngIfPasswordValidate()">
+        <small class="validate-msg" *ngIf="ngIfPasswordRequired()"
           >This field is required.</small
         >
-        <small
-          class="validate-msg"
-          *ngIf="registerForm.get('password').errors.minlength"
-        >
+        <small class="validate-msg" *ngIf="ngIfPasswordMinLength()">
           Should be at least
-          {{ registerForm.get("password").errors.minlength.requiredLength }}
+          {{ ngIfPasswordRequiredLength() }}
           characters length. Now
-          {{ registerForm.get("password").errors.minlength.actualLength }}
+          {{ ngIfPasswordActualLength() }}
           characters.</small
         >
-        <small
-          class="validate-msg"
-          *ngIf="registerForm.get('password').errors.pattern"
-        >
+        <small class="validate-msg" *ngIf="ngIfPasswordPattern()">
           Should contain: at least one uppercase letter, one number, one special
           symbol. $ % . & ! - symbols</small
         >
 
-        <small
-          class="validate-msg"
-          *ngIf="
-            registerForm.get('password').errors.emailIncludes ||
-            registerForm.get('password').errors.firstNameWithSpaceIncludes ||
-            registerForm.get('password').errors.secondNameWithSpaceIncludes ||
-            registerForm.get('password').errors.firstNameWithDashIncludes ||
-            registerForm.get('password').errors.secondNameWithDashIncludes
-          "
-        >
+        <small class="validate-msg" *ngIf="ngIfPasswordUniq()">
           Should not contain parts of a user name or email</small
         >
       </div>
