@@ -1,0 +1,146 @@
+<div class="container">
+  <h2>Registration</h2>
+  <form class="auth-form" [formGroup]="registerForm" (ngSubmit)="submit()">
+    <div class="form-control">
+      <div class="form-fields">
+        <Label for="name">Name:</Label>
+        <input
+          class="input-field"
+          id="name"
+          type="text"
+          placeholder="Please enter your name"
+          formControlName="name"
+          autocomplete="on"
+        />
+      </div>
+      <div
+        class="validation"
+        *ngIf="
+          registerForm.get('name').invalid && registerForm.get('name').touched
+        "
+      >
+        <small
+          class="validate-msg"
+          *ngIf="registerForm.get('name').errors.pattern"
+          >No special symbols or numbers allowed.</small
+        >
+        <small
+          class="validate-msg"
+          *ngIf="registerForm.get('name').errors.minlength"
+        >
+          Should be at least
+          {{ registerForm.get("name").errors.minlength.requiredLength }}
+          characters length. Now
+          {{ registerForm.get("name").errors.minlength.actualLength }}
+          characters.</small
+        >
+        <small
+          class="validate-msg"
+          *ngIf="registerForm.get('name').errors.required"
+          >This field is required.</small
+        >
+      </div>
+    </div>
+
+    <div class="form-control">
+      <div class="form-fields">
+        <Label for="email">Email:</Label>
+        <input
+          class="input-field"
+          id="email"
+          type="text"
+          placeholder="Please enter your email"
+          formControlName="email"
+          autocomplete="on"
+        />
+      </div>
+      <div
+        class="validation"
+        *ngIf="
+          registerForm.get('email').invalid && registerForm.get('email').touched
+        "
+      >
+        <small
+          class="validate-msg"
+          *ngIf="registerForm.get('email').errors.required"
+          >This field is required.</small
+        >
+        <small
+          class="validate-msg"
+          *ngIf="registerForm.get('email').errors.email"
+          >Should write a valid email.</small
+        >
+        <small
+          class="validate-msg"
+          *ngIf="registerForm.get('email').errors.pattern"
+        >
+          Supports only (.com, .net, .org, .co, .us) domains, only 5 symbols
+          after @ allowed, no more than 3 dots before @</small
+        >
+      </div>
+    </div>
+
+    <div class="form-control">
+      <div class="form-fields">
+        <Label for="password">Password:</Label>
+        <input
+          class="input-field"
+          id="password"
+          type="password"
+          placeholder="Please enter your password"
+          formControlName="password"
+          autocomplete="on"
+        />
+      </div>
+      <div
+        class="validation"
+        *ngIf="
+          registerForm.get('password').invalid &&
+          registerForm.get('password').touched
+        "
+      >
+        <small
+          class="validate-msg"
+          *ngIf="registerForm.get('password').errors.required"
+          >This field is required.</small
+        >
+        <small
+          class="validate-msg"
+          *ngIf="registerForm.get('password').errors.minlength"
+        >
+          Should be at least
+          {{ registerForm.get("password").errors.minlength.requiredLength }}
+          characters length. Now
+          {{ registerForm.get("password").errors.minlength.actualLength }}
+          characters.</small
+        >
+        <small
+          class="validate-msg"
+          *ngIf="registerForm.get('password').errors.pattern"
+        >
+          Should contain: at least one uppercase letter, one number, one special
+          symbol. $ % . & ! - symbols</small
+        >
+
+        <small
+          class="validate-msg"
+          *ngIf="
+            registerForm.get('password').errors.emailIncludes ||
+            registerForm.get('password').errors.firstNameWithSpaceIncludes ||
+            registerForm.get('password').errors.secondNameWithSpaceIncludes ||
+            registerForm.get('password').errors.firstNameWithDashIncludes ||
+            registerForm.get('password').errors.secondNameWithDashIncludes
+          "
+        >
+          Should not contain parts of a user name or email</small
+        >
+      </div>
+    </div>
+
+    <div class="btn-wrapper">
+      <button type="submit" class="btn" [disabled]="registerForm.invalid">
+        Create New User
+      </button>
+    </div>
+  </form>
+</div>

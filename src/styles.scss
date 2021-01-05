@@ -1,1 +1,110 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+:root {
+  --primary-color: #dc3545;
+  --dark-color: #333333;
+  --light-color: #f4f4f4;
+  --danger-color: #dc3545;
+  --success-color: #28a745;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: #fff;
+  color: #333;
+}
+
+a {
+  color: var(--primary-color);
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    color: #666;
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 2rem;
+}
+
+// =====================
+h2,
+h1 {
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  &.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+
+  &.ng-valid.ng-touched {
+    border: 1px solid green;
+  }
+  &.input-field {
+    width: 500px;
+    height: 30px;
+  }
+  &::placeholder {
+    padding-left: 1.5rem;
+    font-size: 15px;
+  }
+}
+
+.validate-msg {
+  color: red;
+}
+
+.auth-form {
+  border: 1px dashed gray;
+  padding: 2rem;
+}
+
+.form-fields {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-control {
+  margin-bottom: 1rem;
+}
+
+.btn {
+  display: block;
+  margin: 0 auto;
+  padding: 0.5rem;
+  color: #fff;
+  background: black;
+
+  &:disabled {
+    background: rgb(95, 94, 94);
+  }
+}
+
+.validation {
+  display: flex;
+  justify-content: flex-end;
+}
