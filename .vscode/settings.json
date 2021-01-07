@@ -4,5 +4,8 @@
         "heroselect",
         "minlenth"
     ],
-    "html.format.wrapLineLength": 100
+    "html.format.wrapLineLength": 100,
+    "cSpell.ignoreWords": [
+        "powerstats"
+    ]
 }

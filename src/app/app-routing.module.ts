@@ -1,3 +1,4 @@
+import { AlphabetComponent } from './alphabet/alphabet.component';
 import { HeroSelectionComponent } from './hero-selection/hero-selection.component';
 import { ExpireMsgComponent } from './expire-msg/expire-msg.component';
 import { SuccessfullyRegisteredComponent } from './successfully-registered/successfully-registered.component';
@@ -17,6 +18,11 @@ const routes: Routes = [
       {
         path: 'heroselect',
         component: HeroSelectionComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'alphabet',
+        component: AlphabetComponent,
         canActivate: [AuthGuard],
       },
       {

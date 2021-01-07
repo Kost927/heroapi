@@ -6,4 +6,5 @@ export default {
   NAME_VALIDATE: '^[a-zA-Z\\s|-]*$',
   EXPIRE_MASSAGE:
     'Your current session has expired. Please login again to continue using this app!',
+  BASE_URL: `https://superheroapi.com/api.php/173178867662456`,
 };
