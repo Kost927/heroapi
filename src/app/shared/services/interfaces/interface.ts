@@ -17,7 +17,7 @@ export interface Hero {
   powerstats: PowerStats;
 }
 
-interface PowerStats {
+export interface PowerStats {
   combat: string;
   durability: string;
   intelligence: string;

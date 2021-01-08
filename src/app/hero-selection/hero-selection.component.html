@@ -15,7 +15,9 @@
           formControlName="search"
         />
 
-        <button (click)="goToAbcPage()" class="abc_btn btn">ABC</button>
+        <button type="button" (click)="goToAbcPage()" class="abc_btn btn">
+          ABC
+        </button>
 
         <p class="recent-search_title">Resent searches:</p>
         <div class="recent-search_wrapper">
@@ -79,6 +81,14 @@
             <span>Strength: {{ hero.powerstats.strength }}</span>
           </li>
         </ul>
+        <button
+          type="button"
+          class="btn"
+          (click)="selectHero($event)"
+          data-id="{{ hero.id }}"
+        >
+          select
+        </button>
       </div>
 
       <div *ngIf="errorMsg" class="errorMessage">

@@ -1,8 +1,9 @@
-import { Hero } from './interfaces/interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, empty } from 'rxjs';
 import { tap } from 'rxjs/operators';
+
+import { Hero } from './interfaces/interface';
 import constants from '../constants';
 
 @Injectable({
@@ -48,11 +49,27 @@ export class SearchService {
     }
   }
 
-  public getRecentSearches() {
+  public getRecentSearches(): void {
     if (sessionStorage.getItem('resentSearches')) {
       this.allRecentSearches = JSON.parse(
         sessionStorage.getItem('resentSearches')
       );
+    }
+  }
+
+  public selectHero(id: string): void {
+    if (localStorage.getItem('selectedHero')) {
+      let allSelectedHeroes = [
+        ...JSON.parse(localStorage.getItem('selectedHero')),
+      ];
+
+      allSelectedHeroes = [...allSelectedHeroes, id];
+      localStorage.setItem(
+        'selectedHero',
+        JSON.stringify([...new Set(allSelectedHeroes)])
+      );
+    } else {
+      localStorage.setItem('selectedHero', JSON.stringify([id]));
     }
   }
 }

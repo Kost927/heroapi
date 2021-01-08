@@ -1,9 +1,11 @@
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { SearchService } from './../shared/services/search.service';
 import { Component, OnInit } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+
+import { SearchService } from './../shared/services/search.service';
+import constants from '../shared/constants';
 
 @Component({
   selector: 'app-hero-selection',
@@ -15,9 +17,9 @@ export class HeroSelectionComponent implements OnInit {
   public page: number = 1;
   public errorMsg: any;
   public searchForm: FormGroup;
+  public isSelected: boolean = false;
 
   constructor(public searchService: SearchService, private router: Router) {}
-
   ngOnInit(): void {
     this.searchFormValidate();
     this.searchService.getRecentSearches();
@@ -27,7 +29,7 @@ export class HeroSelectionComponent implements OnInit {
     this.searchForm = new FormGroup({
       search: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^[a-zA-Z\s]+$/),
+        Validators.pattern(constants.SEARCH_VALIDATE),
       ]),
     });
   }
@@ -56,6 +58,16 @@ export class HeroSelectionComponent implements OnInit {
         this.searchService.setRecentSearches(query);
         this.searchService.getRecentSearches();
       });
+  }
+
+  selectHero(event): void {
+    this.searchService.heroes.find((hero) => {
+      if (event.target.id === hero.id) {
+        this.searchService.selectHero(hero.id);
+        event.target.disabled = true;
+        localStorage.setItem('lastSelectedHero', JSON.stringify(hero.id));
+      }
+    });
   }
 
   goToAbcPage(): void {

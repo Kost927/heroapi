@@ -2,8 +2,8 @@ import { NewUser, User } from './interfaces/interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { v4 as uuidv4 } from 'uuid';
 import { tap } from 'rxjs/operators';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -43,7 +43,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('expireDate');
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    // localStorage.removeItem('user');
   }
 
   isAuthenticated(): boolean {
