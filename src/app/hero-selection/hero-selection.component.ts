@@ -1,5 +1,3 @@
-import { AlphabetService } from './../shared/services/alphabet.service';
-import { RefDirective } from './../shared/ref.directive';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
   Component,
@@ -11,6 +9,8 @@ import {
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+import { RefDirective } from './../shared/ref.directive';
+import { AlphabetService } from './../shared/services/alphabet.service';
 import { SearchService } from './../shared/services/search.service';
 import { ModalComponent } from './../modal/modal.component';
 import constants from '../shared/constants';

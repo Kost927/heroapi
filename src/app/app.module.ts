@@ -12,8 +12,8 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { SuccessfullyRegisteredComponent } from './successfully-registered/successfully-registered.component';
 import { ExpireMsgComponent } from './expire-msg/expire-msg.component';
 import { HeroSelectionComponent } from './hero-selection/hero-selection.component';
-import { ModalComponent } from './modal/modal.component';
 import { RefDirective } from './shared/ref.directive';
+import { AlphabetComponent } from './alphabet/alphabet.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +24,8 @@ import { RefDirective } from './shared/ref.directive';
     SuccessfullyRegisteredComponent,
     ExpireMsgComponent,
     HeroSelectionComponent,
-    ModalComponent,
     RefDirective,
+    AlphabetComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +36,7 @@ import { RefDirective } from './shared/ref.directive';
     NgxPaginationModule,
   ],
   providers: [],
-  entryComponents: [ModalComponent],
+  entryComponents: [AlphabetComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -4,11 +4,11 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import constants from '../shared/constants';
 
 @Component({
-  selector: 'app-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss'],
+  selector: 'app-alphabet',
+  templateUrl: './alphabet.component.html',
+  styleUrls: ['./alphabet.component.scss'],
 })
-export class ModalComponent {
+export class AlphabetComponent {
   @Output() close = new EventEmitter<void>();
   alphabet: string[] = constants.ALPHABET;
 
