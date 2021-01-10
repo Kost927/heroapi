@@ -12,8 +12,8 @@ import { catchError } from 'rxjs/operators';
 import { RefDirective } from './../shared/ref.directive';
 import { AlphabetService } from './../shared/services/alphabet.service';
 import { SearchService } from './../shared/services/search.service';
-import { ModalComponent } from './../modal/modal.component';
 import constants from '../shared/constants';
+import { AlphabetComponent } from '../alphabet/alphabet.component';
 
 @Component({
   selector: 'app-hero-selection',
@@ -92,7 +92,9 @@ export class HeroSelectionComponent implements OnInit {
   }
 
   showModal(): void {
-    const modalFactory = this.resolver.resolveComponentFactory(ModalComponent);
+    const modalFactory = this.resolver.resolveComponentFactory(
+      AlphabetComponent
+    );
     this.refDir.containerRef.clear();
     const component = this.refDir.containerRef.createComponent(modalFactory);
 
