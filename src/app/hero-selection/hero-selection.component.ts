@@ -71,6 +71,7 @@ export class HeroSelectionComponent implements OnInit {
         this.loading = false;
         this.searchService.setRecentSearches(query);
         this.searchService.getRecentSearches();
+        this.searchForm.reset();
       });
   }
 

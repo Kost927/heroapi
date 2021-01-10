@@ -17,4 +17,8 @@ export class MainLayoutComponent {
     this.auth.logout();
     this.router.navigate(['/login']);
   }
+
+  goToUserInfoPage() {
+    this.router.navigate(['/userinfo']);
+  }
 }

@@ -14,6 +14,10 @@ import { ExpireMsgComponent } from './expire-msg/expire-msg.component';
 import { HeroSelectionComponent } from './hero-selection/hero-selection.component';
 import { RefDirective } from './shared/ref.directive';
 import { AlphabetComponent } from './alphabet/alphabet.component';
+import { UserInfoPageComponent } from './user-info-page/user-info-page.component';
+import { HeroesListComponent } from './user-info-page/heroes-list/heroes-list.component';
+import { HistoryComponent } from './user-info-page/history/history.component';
+import { PowerUpsComponent } from './user-info-page/power-ups/power-ups.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,10 @@ import { AlphabetComponent } from './alphabet/alphabet.component';
     HeroSelectionComponent,
     RefDirective,
     AlphabetComponent,
+    UserInfoPageComponent,
+    HeroesListComponent,
+    HistoryComponent,
+    PowerUpsComponent,
   ],
   imports: [
     BrowserModule,
