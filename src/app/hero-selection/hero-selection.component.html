@@ -1,3 +1,5 @@
+<ng-template appRef></ng-template>
+
 <div class="container">
   <form
     class="search-form"
@@ -7,17 +9,37 @@
     <div class="form-control">
       <div class="form-fields">
         <Label class="label">Find your hero</Label>
-        <input
-          type="text"
-          placeholder="Please enter the hero name"
-          class="input-field"
-          autocomplete="on"
-          formControlName="search"
-        />
+        <div class="input-wrapper">
+          <button
+            type="button"
+            (click)="showModal()"
+            class="abc_btn btn"
+            *ngIf="alpha.clickedLetter; else defaultLetter"
+          >
+            {{ alpha.clickedLetter }}
+          </button>
+          <ng-template #defaultLetter>
+            <button type="button" (click)="showModal()" class="abc_btn btn">
+              A
+            </button>
+          </ng-template>
+          <input
+            type="text"
+            placeholder="Please enter the hero name"
+            class="input-field"
+            autocomplete="on"
+            formControlName="search"
+          />
+        </div>
 
-        <button type="button" (click)="goToAbcPage()" class="abc_btn btn">
-          ABC
-        </button>
+        <div class="validation" *ngIf="ngIfSearchValidation()">
+          <small class="validate-msg" *ngIf="ngIfSearchRequired()"
+            >This field is required</small
+          >
+          <small class="validate-msg" *ngIf="ngIfSearchPattern()"
+            >Use only letters for search</small
+          >
+        </div>
 
         <p class="recent-search_title">Resent searches:</p>
         <div class="recent-search_wrapper">
@@ -27,15 +49,6 @@
             >{{ recent }}
           </span>
         </div>
-      </div>
-
-      <div class="validation" *ngIf="ngIfSearchValidation()">
-        <small class="validate-msg" *ngIf="ngIfSearchRequired()"
-          >This field is required</small
-        >
-        <small class="validate-msg" *ngIf="ngIfSearchPattern()"
-          >Use only letters for search</small
-        >
       </div>
 
       <div class="loading" *ngIf="loading">

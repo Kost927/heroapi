@@ -8,4 +8,6 @@ export default {
   EXPIRE_MASSAGE:
     'Your current session has expired. Please login again to continue using this app!',
   BASE_URL: `https://superheroapi.com/api.php/173178867662456`,
+  // prettier-ignore
+  ALPHABET: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
 };
