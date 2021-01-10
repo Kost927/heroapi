@@ -22,9 +22,11 @@ export class AlphabetComponent {
     this.alpha.pickLetter(event);
   }
 
+  filterByFirstLetter() {}
+
   public submitSearch(): void {
     const query: string = this.alpha.clickedLetter;
 
-    this.searchService.searchEntries(query).subscribe();
+    this.alpha.searchEntries(query).subscribe();
   }
 }
