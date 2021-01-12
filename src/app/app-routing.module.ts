@@ -1,3 +1,7 @@
+import { PowerUpsComponent } from './user-info-page/power-ups/power-ups.component';
+import { HistoryComponent } from './user-info-page/history/history.component';
+import { HeroesListComponent } from './user-info-page/heroes-list/heroes-list.component';
+import { UserInfoPageComponent } from './user-info-page/user-info-page.component';
 import { HeroSelectionComponent } from './hero-selection/hero-selection.component';
 import { ExpireMsgComponent } from './expire-msg/expire-msg.component';
 import { SuccessfullyRegisteredComponent } from './successfully-registered/successfully-registered.component';
@@ -14,6 +18,30 @@ const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       { path: '', redirectTo: '/login', pathMatch: 'full' },
+      {
+        path: 'userinfo',
+        component: UserInfoPageComponent,
+        canActivate: [AuthGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: '/userinfo/heroeslist',
+            pathMatch: 'full',
+          },
+          {
+            path: 'heroeslist',
+            component: HeroesListComponent,
+          },
+          {
+            path: 'history',
+            component: HistoryComponent,
+          },
+          {
+            path: 'powerups',
+            component: PowerUpsComponent,
+          },
+        ],
+      },
       {
         path: 'heroselect',
         component: HeroSelectionComponent,

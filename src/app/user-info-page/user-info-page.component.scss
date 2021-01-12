@@ -1,0 +1,21 @@
+.navigation {
+  padding-top: 35px;
+}
+
+.userInfo-list {
+  display: flex;
+  justify-content: space-around;
+}
+
+.userInfo-item {
+  outline: none;
+}
+
+.userInfo-item_text {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.active {
+  color: green;
+}

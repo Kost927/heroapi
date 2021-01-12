@@ -1,8 +1,9 @@
 <nav class="navbar">
   <h1><a [routerLink]="['/heroselect']">Super Hero App</a></h1>
-  <button *ngIf="auth.isAuthenticated()" class="btn" (click)="logout()">
-    Sing out
-  </button>
+  <div class="navigate" *ngIf="auth.isAuthenticated()">
+    <p class="user-info" (click)="goToUserInfoPage()">User Info</p>
+    <button class="btn" (click)="logout()">Sing out</button>
+  </div>
 </nav>
 
 <div class="container"><router-outlet></router-outlet></div>
