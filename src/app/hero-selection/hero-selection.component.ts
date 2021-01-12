@@ -31,9 +31,10 @@ export class HeroSelectionComponent implements OnInit {
 
   constructor(
     public searchService: SearchService,
-    private resolver: ComponentFactoryResolver,
-    public alpha: AlphabetService
+    public alpha: AlphabetService,
+    private resolver: ComponentFactoryResolver
   ) {}
+
   ngOnInit(): void {
     this.searchFormValidate();
     this.searchService.getRecentSearches();
@@ -48,13 +49,16 @@ export class HeroSelectionComponent implements OnInit {
     });
   }
 
-  public submitSearch(): void {
+  submitSearch(): void {
     if (this.searchForm.invalid) {
       return;
     }
-
     this.loading = true;
 
+    this.searchMethod();
+  }
+
+  searchMethod(): void {
     const query: string = this.searchForm.value.search;
 
     this.searchService
@@ -67,7 +71,7 @@ export class HeroSelectionComponent implements OnInit {
           return throwError(err);
         })
       )
-      .subscribe((val) => {
+      .subscribe((res) => {
         this.loading = false;
         this.searchService.setRecentSearches(query);
         this.searchService.getRecentSearches();
@@ -76,11 +80,11 @@ export class HeroSelectionComponent implements OnInit {
   }
 
   selectHero(event): void {
-    this.searchService.heroes.find((hero) => {
+    this.searchService.heroes.forEach((hero) => {
       if (event.target.id === hero.id) {
-        this.searchService.selectHero(hero.id);
+        this.searchService.selectHero(hero);
+        localStorage.setItem('lastSelectedHero', JSON.stringify(hero));
         event.target.disabled = true;
-        localStorage.setItem('lastSelectedHero', JSON.stringify(hero.id));
       }
     });
   }

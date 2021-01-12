@@ -1,6 +1,6 @@
+import { SearchService } from './../shared/services/search.service';
 import { Component, Output, EventEmitter } from '@angular/core';
 
-import { SearchService } from './../shared/services/search.service';
 import { AlphabetService } from './../shared/services/alphabet.service';
 import constants from '../shared/constants';
 
@@ -18,15 +18,13 @@ export class AlphabetComponent {
     private searchService: SearchService
   ) {}
 
-  pickLetter(): void {
+  public pickLetter(): void {
     this.alpha.pickLetter(event);
   }
-
-  filterByFirstLetter() {}
 
   public submitSearch(): void {
     const query: string = this.alpha.clickedLetter;
 
-    this.alpha.searchEntries(query).subscribe();
+    this.searchService.searchEntries(query).subscribe();
   }
 }
