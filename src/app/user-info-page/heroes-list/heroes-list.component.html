@@ -1,1 +1,60 @@
-<p>heroes-list works!</p>
+<div class="container">
+  <ul>
+    <li
+      class="heroes-list_item"
+      *ngFor="let hero of selectedHeroes; let l = last"
+      (click)="onSelectHero(hero)"
+      [class.active]="!activeHero ? l : hero === activeHero"
+    >
+      <div class="first-block_wrapper">
+        <h3>{{ hero.name }}</h3>
+        <img
+          class="heroes-list_img"
+          src="{{ hero.image.url }}"
+          alt="{{ hero.name }}"
+        />
+      </div>
+      <div class="second-block_wrapper">
+        <ul class="hero-powerstats_list">
+          <li
+            class="hero-powerstats_item"
+            *ngIf="hero.powerstats.combat !== 'null'"
+          >
+            <span>Combat: {{ hero.powerstats.combat }}</span>
+          </li>
+          <li
+            class="hero-powerstats_item"
+            *ngIf="hero.powerstats.durability !== 'null'"
+          >
+            <span>Durability: {{ hero.powerstats.durability }}</span>
+          </li>
+          <li
+            class="hero-powerstats_item"
+            *ngIf="hero.powerstats.intelligence !== 'null'"
+          >
+            <span>Intelligence: {{ hero.powerstats.intelligence }}</span>
+          </li>
+          <li
+            class="hero-powerstats_item"
+            *ngIf="hero.powerstats.power !== 'null'"
+          >
+            <span>Power: {{ hero.powerstats.power }}</span>
+          </li>
+          <li
+            class="hero-powerstats_item"
+            *ngIf="hero.powerstats.speed !== 'null'"
+          >
+            <span>Speed: {{ hero.powerstats.speed }}</span>
+          </li>
+          <li
+            class="hero-powerstats_item"
+            *ngIf="hero.powerstats.strength !== 'null'"
+          >
+            <span>Strength: {{ hero.powerstats.strength }}</span>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+  <button class="btn" (click)="goToHeroesSelectPage()">+</button>
+</div>

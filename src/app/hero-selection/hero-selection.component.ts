@@ -67,7 +67,7 @@ export class HeroSelectionComponent implements OnInit {
           return throwError(err);
         })
       )
-      .subscribe((val) => {
+      .subscribe((res) => {
         this.loading = false;
         this.searchService.setRecentSearches(query);
         this.searchService.getRecentSearches();
@@ -76,11 +76,11 @@ export class HeroSelectionComponent implements OnInit {
   }
 
   selectHero(event): void {
-    this.searchService.heroes.find((hero) => {
+    this.searchService.heroes.forEach((hero) => {
       if (event.target.id === hero.id) {
-        this.searchService.selectHero(hero.id);
+        this.searchService.selectHero(hero);
+        localStorage.setItem('lastSelectedHero', JSON.stringify(hero));
         event.target.disabled = true;
-        localStorage.setItem('lastSelectedHero', JSON.stringify(hero.id));
       }
     });
   }

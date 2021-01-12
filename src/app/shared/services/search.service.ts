@@ -26,8 +26,14 @@ export class SearchService {
     } else {
       return this.httpClient.get(`${this.baseUrl}/search/${query}`).pipe(
         tap((heroes) => {
-          this.heroes = heroes.results;
-          console.log('heroes', this.heroes);
+          if (query.length > 1) {
+            this.heroes = heroes.results;
+            console.log('heroes', this.heroes);
+          } else {
+            this.heroes = heroes.results.filter((hero) =>
+              hero.name.startsWith(query)
+            );
+          }
         })
       );
     }
@@ -57,19 +63,30 @@ export class SearchService {
     }
   }
 
-  public selectHero(id: string): void {
+  // public selectHero(hero: Hero): void {
+  //   let ObjHero = {
+  //     [hero.id]: hero,
+  //   };
+  //   if (localStorage.getItem('selectedHero')) {
+  //     this.getSelectedHero();
+  //     ObjHero = { ...this.values, [hero.id]: hero };
+
+  //     localStorage.setItem('selectedHero', JSON.stringify(ObjHero));
+  //   } else {
+  //     localStorage.setItem('selectedHero', JSON.stringify(ObjHero));
+  //   }
+  // }
+
+  public selectHero(hero: Hero): void {
     if (localStorage.getItem('selectedHero')) {
       let allSelectedHeroes = [
         ...JSON.parse(localStorage.getItem('selectedHero')),
       ];
 
-      allSelectedHeroes = [...allSelectedHeroes, id];
-      localStorage.setItem(
-        'selectedHero',
-        JSON.stringify([...new Set(allSelectedHeroes)])
-      );
+      allSelectedHeroes = [...allSelectedHeroes, hero];
+      localStorage.setItem('selectedHero', JSON.stringify(allSelectedHeroes));
     } else {
-      localStorage.setItem('selectedHero', JSON.stringify([id]));
+      localStorage.setItem('selectedHero', JSON.stringify([hero]));
     }
   }
 }
