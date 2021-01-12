@@ -1,0 +1,42 @@
+.form-fields {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.label {
+  display: block;
+}
+
+.results {
+  display: flex;
+  justify-content: space-around;
+}
+
+.hero-image {
+  width: 150px;
+}
+
+.recent-search_wrapper {
+  display: flex;
+}
+
+.recent-search_title {
+  margin: 0 auto;
+}
+
+.recent-search {
+  margin-right: 10px;
+}
+
+.container {
+  position: relative;
+}
+
+.abc_btn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(300%, 65%);
+}

@@ -1,17 +1,15 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-successfully-registered',
   templateUrl: './successfully-registered.component.html',
   styleUrls: ['./successfully-registered.component.scss'],
 })
-export class SuccessfullyRegisteredComponent implements OnInit {
+export class SuccessfullyRegisteredComponent {
   constructor(private router: Router) {}
 
-  ngOnInit(): void {}
-
-  goToLoginPage() {
+  goToLoginPage(): void {
     this.router.navigate(['/']);
   }
 }
