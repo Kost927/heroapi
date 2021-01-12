@@ -12,6 +12,7 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { SuccessfullyRegisteredComponent } from './successfully-registered/successfully-registered.component';
 import { ExpireMsgComponent } from './expire-msg/expire-msg.component';
 import { HeroSelectionComponent } from './hero-selection/hero-selection.component';
+import { RefDirective } from './shared/ref.directive';
 import { AlphabetComponent } from './alphabet/alphabet.component';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { AlphabetComponent } from './alphabet/alphabet.component';
     SuccessfullyRegisteredComponent,
     ExpireMsgComponent,
     HeroSelectionComponent,
+    RefDirective,
     AlphabetComponent,
   ],
   imports: [
@@ -34,6 +36,7 @@ import { AlphabetComponent } from './alphabet/alphabet.component';
     NgxPaginationModule,
   ],
   providers: [],
+  entryComponents: [AlphabetComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

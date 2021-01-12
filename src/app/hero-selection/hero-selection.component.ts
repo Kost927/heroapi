@@ -1,11 +1,19 @@
-import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ComponentFactoryResolver,
+  ViewChild,
+  HostListener,
+} from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+import { RefDirective } from './../shared/ref.directive';
+import { AlphabetService } from './../shared/services/alphabet.service';
 import { SearchService } from './../shared/services/search.service';
 import constants from '../shared/constants';
+import { AlphabetComponent } from '../alphabet/alphabet.component';
 
 @Component({
   selector: 'app-hero-selection',
@@ -13,13 +21,19 @@ import constants from '../shared/constants';
   styleUrls: ['./hero-selection.component.scss'],
 })
 export class HeroSelectionComponent implements OnInit {
+  @ViewChild(RefDirective) refDir: RefDirective;
+
   public loading: boolean;
   public page: number = 1;
   public errorMsg: any;
   public searchForm: FormGroup;
   public isSelected: boolean = false;
 
-  constructor(public searchService: SearchService, private router: Router) {}
+  constructor(
+    public searchService: SearchService,
+    private resolver: ComponentFactoryResolver,
+    public alpha: AlphabetService
+  ) {}
   ngOnInit(): void {
     this.searchFormValidate();
     this.searchService.getRecentSearches();
@@ -70,8 +84,23 @@ export class HeroSelectionComponent implements OnInit {
     });
   }
 
-  goToAbcPage(): void {
-    this.router.navigate(['/alphabet']);
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent): void {
+    if (event.key === 'Escape') {
+      this.refDir.containerRef.clear();
+    }
+  }
+
+  showModal(): void {
+    const modalFactory = this.resolver.resolveComponentFactory(
+      AlphabetComponent
+    );
+    this.refDir.containerRef.clear();
+    const component = this.refDir.containerRef.createComponent(modalFactory);
+
+    component.instance.close.subscribe(() => {
+      this.refDir.containerRef.clear();
+    });
   }
 
   ngIfSearchValidation(): boolean {

@@ -1,1 +1,14 @@
-<p>alphabet works!</p>
+<div class="backdrop" (click)="close.emit()"></div>
+<div class="modal">
+  <h2>ALPHABET</h2>
+  <ul class="alphabet-list">
+    <li
+      class="alphabet-item"
+      *ngFor="let letter of alphabet"
+      (click)="close.emit(); submitSearch()"
+    >
+      <p (click)="pickLetter($event)">{{ letter }}</p>
+    </li>
+  </ul>
+  <button class="btn" (click)="close.emit()">Close</button>
+</div>

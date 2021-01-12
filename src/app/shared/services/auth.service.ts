@@ -1,14 +1,11 @@
 import { NewUser, User } from './interfaces/interface';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(private http: HttpClient) {}
-
   get token(): string {
     const expireDate = new Date(localStorage.getItem('expireDate'));
 
