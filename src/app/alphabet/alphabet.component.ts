@@ -18,7 +18,7 @@ export class AlphabetComponent {
     private searchService: SearchService
   ) {}
 
-  pickLetter(): void {
+  public pickLetter(): void {
     this.alpha.pickLetter(event);
   }
 

@@ -27,32 +27,44 @@ export class SearchService {
       return this.httpClient.get(`${this.baseUrl}/search/${query}`).pipe(
         tap((heroes) => {
           if (query.length > 1) {
-            this.heroes = heroes.results;
-            console.log('heroes', this.heroes);
+            this.checkSearchByInput(heroes);
           } else {
-            this.heroes = heroes.results.filter((hero) =>
-              hero.name.startsWith(query)
-            );
+            this.checkSearchByLetter(heroes, query);
           }
         })
       );
     }
   }
 
+  private checkSearchByInput(heroes: any): void {
+    this.heroes = heroes.results;
+  }
+
+  private checkSearchByLetter(heroes: any, query: string) {
+    this.heroes = heroes.results.filter((hero) => hero.name.startsWith(query));
+  }
+
   public setRecentSearches(query: string): void {
     if (sessionStorage.getItem('resentSearches')) {
-      let allRecentSearches = [
-        ...JSON.parse(sessionStorage.getItem('resentSearches')),
-      ];
-
-      allRecentSearches = [...allRecentSearches, query];
-      sessionStorage.setItem(
-        'resentSearches',
-        JSON.stringify([...new Set(allRecentSearches)])
-      );
+      this.setRecentIfStorageNotEmpty(query);
     } else {
-      sessionStorage.setItem('resentSearches', JSON.stringify([query]));
+      this.setRecentIfStorageEmpty(query);
     }
+  }
+
+  private setRecentIfStorageNotEmpty(query: string): void {
+    let allRecentSearches = [
+      ...JSON.parse(sessionStorage.getItem('resentSearches')),
+    ];
+    allRecentSearches = [...allRecentSearches, query];
+    sessionStorage.setItem(
+      'resentSearches',
+      JSON.stringify([...new Set(allRecentSearches)])
+    );
+  }
+
+  private setRecentIfStorageEmpty(query: string): void {
+    sessionStorage.setItem('resentSearches', JSON.stringify([query]));
   }
 
   public getRecentSearches(): void {
@@ -62,20 +74,6 @@ export class SearchService {
       );
     }
   }
-
-  // public selectHero(hero: Hero): void {
-  //   let ObjHero = {
-  //     [hero.id]: hero,
-  //   };
-  //   if (localStorage.getItem('selectedHero')) {
-  //     this.getSelectedHero();
-  //     ObjHero = { ...this.values, [hero.id]: hero };
-
-  //     localStorage.setItem('selectedHero', JSON.stringify(ObjHero));
-  //   } else {
-  //     localStorage.setItem('selectedHero', JSON.stringify(ObjHero));
-  //   }
-  // }
 
   public selectHero(hero: Hero): void {
     if (localStorage.getItem('selectedHero')) {

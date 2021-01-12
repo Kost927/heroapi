@@ -1,5 +1,4 @@
 import { Router } from '@angular/router';
-import { SearchService } from './../../shared/services/search.service';
 import { Hero } from './../../shared/services/interfaces/interface';
 import { Component, OnInit } from '@angular/core';
 

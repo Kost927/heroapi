@@ -31,9 +31,10 @@ export class HeroSelectionComponent implements OnInit {
 
   constructor(
     public searchService: SearchService,
-    private resolver: ComponentFactoryResolver,
-    public alpha: AlphabetService
+    public alpha: AlphabetService,
+    private resolver: ComponentFactoryResolver
   ) {}
+
   ngOnInit(): void {
     this.searchFormValidate();
     this.searchService.getRecentSearches();
@@ -48,13 +49,16 @@ export class HeroSelectionComponent implements OnInit {
     });
   }
 
-  public submitSearch(): void {
+  submitSearch(): void {
     if (this.searchForm.invalid) {
       return;
     }
-
     this.loading = true;
 
+    this.searchMethod();
+  }
+
+  searchMethod(): void {
     const query: string = this.searchForm.value.search;
 
     this.searchService
