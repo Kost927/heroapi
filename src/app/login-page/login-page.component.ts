@@ -24,12 +24,12 @@ export class LoginPageComponent implements OnInit {
 
   loginFormValidate(): void {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [
+      currentEmail: new FormControl('', [
         Validators.required,
         Validators.email,
         LoginValidate.existEmail,
       ]),
-      password: new FormControl('', [
+      currentPassword: new FormControl('', [
         Validators.required,
         LoginValidate.existPassword,
       ]),
@@ -47,17 +47,17 @@ export class LoginPageComponent implements OnInit {
 
     this.signIn = true;
 
-    const { email, password } = this.loginForm.value;
+    const { currentEmail, currentPassword } = this.loginForm.value;
 
     const user: User = {
-      email,
-      password,
+      email: currentEmail,
+      password: currentPassword,
     };
 
     const allUsers = JSON.parse(localStorage.getItem('allUsers'));
 
     allUsers.forEach(({ email, password }) => {
-      if (email === email && password === password) {
+      if (email === currentEmail && password === currentPassword) {
         this.authLoginSubscribe(user);
         localStorage.setItem('user', JSON.stringify(user));
       }
@@ -74,34 +74,35 @@ export class LoginPageComponent implements OnInit {
 
   ngIfEmailValidation(): boolean {
     return (
-      this.loginForm.get('email').invalid && this.loginForm.get('email').touched
+      this.loginForm.get('currentEmail').invalid &&
+      this.loginForm.get('currentEmail').touched
     );
   }
 
   ngIfEmailRequired(): void {
-    return this.loginForm.get('email').errors.required;
+    return this.loginForm.get('currentEmail').errors.required;
   }
 
   ngIfEmail(): void {
-    return this.loginForm.get('email').errors.email;
+    return this.loginForm.get('currentEmail').errors.email;
   }
 
   ngIfEmailExist(): void {
-    return this.loginForm.get('email').errors.emailValidator;
+    return this.loginForm.get('currentEmail').errors.emailValidator;
   }
 
   ngIfPasswordValidation(): boolean {
     return (
-      this.loginForm.get('password').invalid &&
-      this.loginForm.get('password').touched
+      this.loginForm.get('currentPassword').invalid &&
+      this.loginForm.get('currentPassword').touched
     );
   }
 
   ngIfPasswordRequired(): void {
-    return this.loginForm.get('password').errors.required;
+    return this.loginForm.get('currentPassword').errors.required;
   }
 
   ngIfPasswordExist(): void {
-    return this.loginForm.get('password').errors.passwordValidator;
+    return this.loginForm.get('currentPassword').errors.passwordValidator;
   }
 }

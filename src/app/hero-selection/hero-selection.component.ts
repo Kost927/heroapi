@@ -79,19 +79,19 @@ export class HeroSelectionComponent implements OnInit {
       });
   }
 
-  selectHero(event): void {
+  selectHero({ target }): void {
     this.searchService.heroes.forEach((hero) => {
-      if (event.target.id === hero.id) {
+      if (target.id === hero.id) {
         this.searchService.selectHero(hero);
         localStorage.setItem('lastSelectedHero', JSON.stringify(hero));
-        event.target.disabled = true;
+        target.disabled = true;
       }
     });
   }
 
   @HostListener('window:keyup', ['$event'])
-  keyEvent(event: KeyboardEvent): void {
-    if (event.key === 'Escape') {
+  keyEvent({ key }: KeyboardEvent): void {
+    if (key === constants.ESCAPE) {
       this.refDir.containerRef.clear();
     }
   }

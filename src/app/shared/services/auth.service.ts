@@ -40,7 +40,6 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('expireDate');
     localStorage.removeItem('token');
-    // localStorage.removeItem('user');
   }
 
   isAuthenticated(): boolean {

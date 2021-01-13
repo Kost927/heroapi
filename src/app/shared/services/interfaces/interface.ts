@@ -25,3 +25,12 @@ export interface PowerStats {
   speed: string;
   strength: string;
 }
+
+export interface History {
+  date: Date;
+  heroName: string;
+  heroId: string;
+  enemyName: string;
+  enemyId: string;
+  result: 'win' | 'lose';
+}

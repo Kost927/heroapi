@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
-import { AuthService } from './../../services/auth.service';
 import { Component } from '@angular/core';
+
+import { AuthService } from './../../services/auth.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -13,12 +14,12 @@ export class MainLayoutComponent {
 
   constructor(public auth: AuthService, private router: Router) {}
 
-  logout() {
+  logout(): void {
     this.auth.logout();
     this.router.navigate(['/login']);
   }
 
-  goToUserInfoPage() {
+  goToUserInfoPage(): void {
     this.router.navigate(['/userinfo']);
   }
 }

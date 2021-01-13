@@ -18,7 +18,7 @@ export class LoginValidate {
   static existPassword(control: FormControl): { [key: string]: boolean } {
     const allUsers = JSON.parse(localStorage.getItem('allUsers'));
 
-    const emailValue = control.parent?.controls['email'].value;
+    const emailValue = control.parent?.controls['currentEmail'].value;
 
     const passwordVal = (el: { password: string; email: string }) =>
       el.password === control.value && el.email === emailValue;
