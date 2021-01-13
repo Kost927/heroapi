@@ -1,0 +1,14 @@
+<div class="powerup-list" [class.disabled]="isDisabled">
+  <img
+    class="powerup-img"
+    src="{{ powerup.image }}"
+    alt="{{ powerup.title }}"
+  />
+  <div class="powerup-item_wrapper">
+    <h3 class="powerup-title" [class.disabled]="isDisabled">
+      {{ powerup.title }}
+    </h3>
+    <p>{{ powerup.description }}</p>
+    <p>uses left: {{ powerup.usesLeft }}</p>
+  </div>
+</div>

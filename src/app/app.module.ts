@@ -18,6 +18,7 @@ import { UserInfoPageComponent } from './user-info-page/user-info-page.component
 import { HeroesListComponent } from './user-info-page/heroes-list/heroes-list.component';
 import { HistoryComponent } from './user-info-page/history/history.component';
 import { PowerUpsComponent } from './user-info-page/power-ups/power-ups.component';
+import { PowerUpsInfoComponent } from './user-info-page/power-ups/power-ups-info/power-ups-info.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { PowerUpsComponent } from './user-info-page/power-ups/power-ups.componen
     HeroesListComponent,
     HistoryComponent,
     PowerUpsComponent,
+    PowerUpsInfoComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,11 @@
+.container {
+  max-width: 1000px;
+  height: 800px;
+  border: 1px solid rgb(207, 207, 207);
+  overflow-y: scroll;
+  padding: 2rem;
+}
+
 .history {
   margin: 0 auto;
 

@@ -34,3 +34,10 @@ export interface History {
   enemyId: string;
   result: 'win' | 'lose';
 }
+
+export interface PowerUp {
+  title: string;
+  image: string;
+  description: string;
+  usesLeft: number;
+}
