@@ -18,9 +18,13 @@
     </thead>
     <tbody>
       <tr *ngFor="let fight of fightHistory">
-        <td class="history-item">{{ fight.date | date: "medium" }}</td>
-        <td class="history-item">{{ fight.heroName }}</td>
-        <td class="history-item">{{ fight.enemyName }}</td>
+        <td class="history-item">{{ fight.date | date: "short" }}</td>
+        <td class="history-item hero-title">
+          {{ fight.heroName }}
+        </td>
+        <td class="history-item hero-title">
+          {{ fight.enemyName }}
+        </td>
         <td class="history-item">{{ fight.result }}</td>
       </tr>
     </tbody>

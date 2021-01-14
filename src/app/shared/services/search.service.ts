@@ -12,6 +12,7 @@ import constants from '../constants';
 export class SearchService {
   heroes: Hero[];
   allRecentSearches: string[] | null = null;
+  id: string;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -34,6 +35,10 @@ export class SearchService {
         })
       );
     }
+  }
+
+  public getById(id: string): Observable<any> {
+    return this.httpClient.get(`${this.baseUrl}/${id}`);
   }
 
   private checkSearchByInput(heroes: any): void {

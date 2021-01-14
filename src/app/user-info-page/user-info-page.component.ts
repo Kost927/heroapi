@@ -7,9 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-info-page.component.scss'],
 })
 export class UserInfoPageComponent {
-  constructor(private router: Router) {}
-
-  goToHeroesListTab() {
-    this.router.navigate(['/heroeslist']);
-  }
+  constructor() {}
 }

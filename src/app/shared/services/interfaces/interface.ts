@@ -13,6 +13,9 @@ export interface NewUser {
 export interface Hero {
   id: string;
   name: string;
+  biography?: object;
+  appearance?: object;
+  work?: object;
   image: { url: string };
   powerstats: PowerStats;
 }

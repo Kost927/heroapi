@@ -7,7 +7,13 @@
       [class.active]="!activeHero ? l : hero === activeHero"
     >
       <div class="first-block_wrapper">
-        <h3>{{ hero.name }}</h3>
+        <h3 class="hero-title">
+          <a
+            (click)="searchService.id = hero.id"
+            [routerLink]="['/heroinfo', hero.id]"
+            >{{ hero.name }}</a
+          >
+        </h3>
         <img
           class="heroes-list_img"
           src="{{ hero.image.url }}"

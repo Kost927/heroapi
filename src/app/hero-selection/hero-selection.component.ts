@@ -1,3 +1,4 @@
+import { Router, Params } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
   Component,
@@ -32,7 +33,8 @@ export class HeroSelectionComponent implements OnInit {
   constructor(
     public searchService: SearchService,
     public alpha: AlphabetService,
-    private resolver: ComponentFactoryResolver
+    private resolver: ComponentFactoryResolver,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -79,16 +81,6 @@ export class HeroSelectionComponent implements OnInit {
       });
   }
 
-  selectHero({ target }): void {
-    this.searchService.heroes.forEach((hero) => {
-      if (target.id === hero.id) {
-        this.searchService.selectHero(hero);
-        localStorage.setItem('lastSelectedHero', JSON.stringify(hero));
-        target.disabled = true;
-      }
-    });
-  }
-
   @HostListener('window:keyup', ['$event'])
   keyEvent({ key }: KeyboardEvent): void {
     if (key === constants.ESCAPE) {
@@ -106,6 +98,10 @@ export class HeroSelectionComponent implements OnInit {
     component.instance.close.subscribe(() => {
       this.refDir.containerRef.clear();
     });
+  }
+
+  goToHeroInfoPage(): void {
+    this.router.navigate(['/userinfo']);
   }
 
   ngIfSearchValidation(): boolean {

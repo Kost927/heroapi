@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import { History } from '../../shared/services/interfaces/interface';
@@ -12,7 +13,7 @@ export class HistoryComponent implements OnInit {
   fightHistory: History[];
   toggle: boolean = true;
 
-  constructor(public historyService: HistoryService) {}
+  constructor(public historyService: HistoryService, private router: Router) {}
 
   ngOnInit(): void {
     this.fightHistoryMethod();

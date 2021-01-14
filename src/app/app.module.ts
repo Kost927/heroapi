@@ -19,6 +19,8 @@ import { HeroesListComponent } from './user-info-page/heroes-list/heroes-list.co
 import { HistoryComponent } from './user-info-page/history/history.component';
 import { PowerUpsComponent } from './user-info-page/power-ups/power-ups.component';
 import { PowerUpsInfoComponent } from './user-info-page/power-ups/power-ups-info/power-ups-info.component';
+import { HeroInfoPageComponent } from './hero-info-page/hero-info-page.component';
+import { HeroSelectionItemComponent } from './hero-selection/hero-selection-item/hero-selection-item.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { PowerUpsInfoComponent } from './user-info-page/power-ups/power-ups-info
     HistoryComponent,
     PowerUpsComponent,
     PowerUpsInfoComponent,
+    HeroInfoPageComponent,
+    HeroSelectionItemComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,40 @@
+<div class="heroes-list">
+  <img class="hero-image" src="{{ hero.image.url }}" alt="{{ hero.name }}" />
+  <h3 data-id="{{ hero.id }}" class="hero-title">
+    <a
+      (click)="searchService.id = hero.id"
+      [routerLink]="['/heroinfo', hero.id]"
+      >{{ hero.name }}</a
+    >
+  </h3>
+
+  <ul>
+    <li *ngIf="hero.powerstats.combat !== 'null'">
+      <span>Combat: {{ hero.powerstats.combat }}</span>
+    </li>
+    <li *ngIf="hero.powerstats.durability !== 'null'">
+      <span>Durability: {{ hero.powerstats.durability }}</span>
+    </li>
+    <li *ngIf="hero.powerstats.intelligence !== 'null'">
+      <span>Intelligence: {{ hero.powerstats.intelligence }}</span>
+    </li>
+    <li *ngIf="hero.powerstats.power !== 'null'">
+      <span>Power: {{ hero.powerstats.power }}</span>
+    </li>
+    <li *ngIf="hero.powerstats.speed !== 'null'">
+      <span>Speed: {{ hero.powerstats.speed }}</span>
+    </li>
+    <li *ngIf="hero.powerstats.strength !== 'null'">
+      <span>Strength: {{ hero.powerstats.strength }}</span>
+    </li>
+  </ul>
+  <button
+    type="button"
+    class="btn"
+    (click)="addSelectedHero()"
+    [disabled]="isDisabled"
+    data-id="{{ hero.id }}"
+  >
+    select
+  </button>
+</div>

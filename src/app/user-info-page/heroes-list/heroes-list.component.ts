@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
-import { Hero } from './../../shared/services/interfaces/interface';
 import { Component, OnInit } from '@angular/core';
+
+import { Hero } from './../../shared/services/interfaces/interface';
 
 @Component({
   selector: 'app-heroes-list',
@@ -20,7 +21,7 @@ export class HeroesListComponent implements OnInit {
     this.getSelectedHeroes();
   }
 
-  public getSelectedHeroes(): void {
+  getSelectedHeroes(): void {
     if (this.firstInit) {
       this.selectedHeroes = JSON.parse(localStorage.getItem('selectedHero'));
       this.lastSelectedHero = JSON.parse(
@@ -30,11 +31,11 @@ export class HeroesListComponent implements OnInit {
     }
   }
 
-  public onSelectHero(hero: any): void {
+  onSelectHero(hero: any): void {
     this.activeHero = hero;
   }
 
-  public goToHeroesSelectPage() {
+  goToHeroesSelectPage(): void {
     this.router.navigate(['/heroselect']);
   }
 }

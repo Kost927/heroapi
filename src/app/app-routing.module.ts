@@ -1,3 +1,4 @@
+import { HeroInfoPageComponent } from './hero-info-page/hero-info-page.component';
 import { PowerUpsComponent } from './user-info-page/power-ups/power-ups.component';
 import { HistoryComponent } from './user-info-page/history/history.component';
 import { HeroesListComponent } from './user-info-page/heroes-list/heroes-list.component';
@@ -45,6 +46,11 @@ const routes: Routes = [
       {
         path: 'heroselect',
         component: HeroSelectionComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'heroinfo/:id',
+        component: HeroInfoPageComponent,
         canActivate: [AuthGuard],
       },
       {
