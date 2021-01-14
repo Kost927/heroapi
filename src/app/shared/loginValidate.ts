@@ -31,4 +31,18 @@ export class LoginValidate {
 
     return null;
   }
+
+  static existRegisterEmail(control: FormControl): { [key: string]: boolean } {
+    const allUsers = JSON.parse(localStorage.getItem('allUsers'));
+
+    const emailVal = (el: { email: string }) => el.email === control.value;
+
+    if (allUsers.some(emailVal)) {
+      return {
+        emailValidator: true,
+      };
+    }
+
+    return null;
+  }
 }

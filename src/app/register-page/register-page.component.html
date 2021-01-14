@@ -53,6 +53,9 @@
           Supports only (.com, .net, .org, .co, .us) domains, only 5 symbols
           after @ allowed, no more than 3 dots before @</small
         >
+        <small class="validate-msg" *ngIf="ngIfEmailExist()">
+          Such email already exist</small
+        >
       </div>
     </div>
 
