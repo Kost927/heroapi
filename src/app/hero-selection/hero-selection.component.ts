@@ -1,4 +1,4 @@
-import { Router, Params } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
   Component,
@@ -13,8 +13,8 @@ import { catchError } from 'rxjs/operators';
 import { RefDirective } from './../shared/ref.directive';
 import { AlphabetService } from './../shared/services/alphabet.service';
 import { SearchService } from './../shared/services/search.service';
-import constants from '../shared/constants';
 import { AlphabetComponent } from '../alphabet/alphabet.component';
+import constants from '../shared/constants';
 
 @Component({
   selector: 'app-hero-selection',
