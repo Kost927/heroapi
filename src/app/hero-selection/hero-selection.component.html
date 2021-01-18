@@ -40,15 +40,7 @@
             >Use only letters for search</small
           >
         </div>
-
-        <p class="recent-search_title">Resent searches:</p>
-        <div class="recent-search_wrapper">
-          <span
-            class="recent-search"
-            *ngFor="let recent of searchService.allRecentSearches"
-            >{{ recent }}
-          </span>
-        </div>
+        <app-recent-search></app-recent-search>
       </div>
 
       <div class="loading" *ngIf="loading">
@@ -73,7 +65,12 @@
       <p class="error">{{ errorMsg }}</p>
     </div>
     <div>
-      <pagination-controls (pageChange)="page = $event"></pagination-controls>
+      <pagination-controls
+        class="pagination"
+        (pageChange)="page = $event"
+        (pageBoundsCorrection)="page = $event"
+        autoHide="true"
+      ></pagination-controls>
     </div>
   </div>
 </div>

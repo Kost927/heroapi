@@ -19,10 +19,16 @@
     <tbody>
       <tr *ngFor="let fight of fightHistory">
         <td class="history-item">{{ fight.date | date: "short" }}</td>
-        <td class="history-item hero-title">
+        <td
+          class="history-item hero-title"
+          [routerLink]="['/heroinfo', fight.heroNameId]"
+        >
           {{ fight.heroName }}
         </td>
-        <td class="history-item hero-title">
+        <td
+          class="history-item hero-title"
+          [routerLink]="['/heroinfo', fight.enemyNameId]"
+        >
           {{ fight.enemyName }}
         </td>
         <td class="history-item">{{ fight.result }}</td>

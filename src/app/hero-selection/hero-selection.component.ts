@@ -24,11 +24,11 @@ import constants from '../shared/constants';
 export class HeroSelectionComponent implements OnInit {
   @ViewChild(RefDirective) refDir: RefDirective;
 
-  public loading: boolean;
-  public page: number = 1;
-  public errorMsg: any;
-  public searchForm: FormGroup;
-  public isSelected: boolean = false;
+  loading: boolean;
+  page: number = 1;
+  errorMsg: any;
+  searchForm: FormGroup;
+  isSelected: boolean = false;
 
   constructor(
     public searchService: SearchService,

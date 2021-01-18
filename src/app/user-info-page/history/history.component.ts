@@ -13,14 +13,14 @@ export class HistoryComponent implements OnInit {
   fightHistory: History[];
   toggle: boolean = true;
 
-  constructor(public historyService: HistoryService, private router: Router) {}
+  constructor(public historyService: HistoryService) {}
 
   ngOnInit(): void {
     this.fightHistoryMethod();
   }
 
   fightHistoryMethod(): void {
-    this.fightHistory = this.historyService.fightHistory;
+    this.fightHistory = JSON.parse(localStorage.getItem('history'));
   }
 
   sorting(key: string): void {

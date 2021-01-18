@@ -7,6 +7,9 @@ import constants from '../../shared/constants';
   providedIn: 'root',
 })
 export class PowerUpsService {
+  isSelected: boolean;
+  filteredPowerUps: PowerUp[];
+
   powerUps: PowerUp[] = [
     {
       title: 'Captain America shield',
@@ -18,18 +21,18 @@ export class PowerUpsService {
       title: 'Mjolnir',
       image: constants.MJOLNIR,
       description: 'power +10',
-      usesLeft: 0,
+      usesLeft: 3,
     },
     {
       title: 'Ironman nano armor',
       image: constants.IRON_MAN_ARMOR,
-      description: 'combat + 10',
+      description: 'combat +10',
       usesLeft: 3,
     },
     {
       title: 'Dr. Strange s cloak',
       image: constants.DR_STRANGE_CLOAK,
-      description: 'intelligence + 10',
+      description: 'intelligence +10',
       usesLeft: 3,
     },
     {
@@ -46,14 +49,22 @@ export class PowerUpsService {
     },
   ];
 
+  setPowerUpsToLocalStorage(): void {
+    return localStorage.setItem('powers', JSON.stringify(this.powerUps));
+  }
+
+  getPowerUpsFromLocalStorage(): PowerUp[] {
+    return (this.filteredPowerUps = JSON.parse(localStorage.getItem('powers')));
+  }
+
   powerUpsSorting(): PowerUp[] {
-    const unusedPowerups = this.powerUps.filter(
+    this.filteredPowerUps = this.getPowerUpsFromLocalStorage();
+    const unusedPowerups = this.filteredPowerUps?.filter(
       (powerup) => powerup.usesLeft > 0
     );
-    const usedPowerups = this.powerUps.filter(
+    const usedPowerups = this.filteredPowerUps?.filter(
       (powerup) => powerup.usesLeft === 0
     );
-
-    return (this.powerUps = [...unusedPowerups, ...usedPowerups]);
+    return (this.filteredPowerUps = [...unusedPowerups, ...usedPowerups]);
   }
 }

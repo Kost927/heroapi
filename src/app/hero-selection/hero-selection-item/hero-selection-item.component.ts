@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { DataSharingServiceService } from './../../shared/services/data-sharing-service.service';
 import { SearchService } from './../../shared/services/search.service';
 import { Hero } from 'src/app/shared/services/interfaces/interface';
 
@@ -13,7 +14,10 @@ export class HeroSelectionItemComponent implements OnInit {
 
   isDisabled: boolean = false;
 
-  constructor(public searchService: SearchService) {}
+  constructor(
+    public searchService: SearchService,
+    private dataSharingService: DataSharingServiceService
+  ) {}
 
   ngOnInit(): void {
     this.loadDisabledBtn();
@@ -24,13 +28,15 @@ export class HeroSelectionItemComponent implements OnInit {
 
     const disableBtn = (localHero: Hero) => localHero.id === this.hero.id;
 
-    if (localHeroes.some(disableBtn)) {
+    if (localHeroes && localHeroes.some(disableBtn)) {
       this.isDisabled = true;
     }
   }
 
   addSelectedHero(): void {
     this.searchService.selectHero(this.hero);
+    localStorage.setItem('activeHero', JSON.stringify(this.hero));
     this.isDisabled = true;
+    this.dataSharingService.isSelectedHeroes.next(true);
   }
 }

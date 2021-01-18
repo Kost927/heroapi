@@ -6,9 +6,14 @@ import { History } from './interfaces/interface';
   providedIn: 'root',
 })
 export class HistoryService {
-  fightHistory: History[] = [];
+  setHistoryToLocalStorage(history: History): void {
+    if (localStorage.getItem('history')) {
+      let allHistory = [...JSON.parse(localStorage.getItem('history'))];
 
-  addToFightHistory(result: History): void {
-    this.fightHistory = [result, ...this.fightHistory];
+      allHistory = [...allHistory, history];
+      localStorage.setItem('history', JSON.stringify(allHistory));
+    } else {
+      localStorage.setItem('history', JSON.stringify([history]));
+    }
   }
 }

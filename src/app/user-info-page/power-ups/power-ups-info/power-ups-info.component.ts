@@ -13,8 +13,6 @@ export class PowerUpsInfoComponent implements OnInit {
 
   isDisabled: boolean = false;
 
-  constructor() {}
-
   ngOnInit(): void {
     this.isDisabledPowerUp();
   }

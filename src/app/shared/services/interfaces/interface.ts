@@ -32,9 +32,9 @@ export interface PowerStats {
 export interface History {
   date: Date;
   heroName: string;
-  heroId: string;
+  heroNameId: string;
   enemyName: string;
-  enemyId: string;
+  enemyNameId: string;
   result: 'win' | 'lose';
 }
 
@@ -43,4 +43,9 @@ export interface PowerUp {
   image: string;
   description: string;
   usesLeft: number;
+  isSelected?: boolean;
+}
+
+export interface DialogData {
+  result: 'win' | 'lose';
 }

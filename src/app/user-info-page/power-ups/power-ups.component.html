@@ -1,6 +1,6 @@
 <div class="container">
   <app-power-ups-info
-    *ngFor="let powerup of powerUpsService.powerUps"
+    *ngFor="let powerup of powerUpsService.filteredPowerUps"
     [powerup]="powerup"
   ></app-power-ups-info>
 </div>

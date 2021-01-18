@@ -1,6 +1,6 @@
-import { SearchService } from './../shared/services/search.service';
 import { Component, Output, EventEmitter } from '@angular/core';
 
+import { SearchService } from './../shared/services/search.service';
 import { AlphabetService } from './../shared/services/alphabet.service';
 import constants from '../shared/constants';
 

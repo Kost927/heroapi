@@ -28,13 +28,13 @@
       <span>Strength: {{ hero.powerstats.strength }}</span>
     </li>
   </ul>
-  <button
-    type="button"
-    class="btn"
-    (click)="addSelectedHero()"
-    [disabled]="isDisabled"
-    data-id="{{ hero.id }}"
-  >
-    select
-  </button>
 </div>
+<button
+  type="button"
+  class="btn select-btn"
+  (click)="addSelectedHero()"
+  [disabled]="isDisabled"
+  data-id="{{ hero.id }}"
+>
+  select
+</button>

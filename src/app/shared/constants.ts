@@ -7,7 +7,7 @@ export default {
   NAME_VALIDATE: '^[a-zA-Z\\s|-]*$',
   EXPIRE_MASSAGE:
     'Your current session has expired. Please login again to continue using this app!',
-  BASE_URL: `https://superheroapi.com/api.php/173178867662456`,
+  BASE_URL: `https://superheroapi.com/api.php/1106524199793918`,
   ESCAPE: 'Escape',
   // prettier-ignore
   ALPHABET: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
@@ -23,4 +23,8 @@ export default {
     'https://img2.freepng.ru/20180326/tie/kisspng-the-flash-logo-adobe-flash-flash-5ab8955e5663f7.4410041615220463023539.jpg',
   DR_STRANGE_CLOAK:
     'https://www.pngitem.com/pimgs/m/356-3568339_doctor-strange-cape-png-transparent-png.png',
+  LOSE: 'lose',
+  WIN: 'win',
+  MODAL_WIDTH: '300px',
+  MODAL_HEIGHT: '100px',
 };

@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
+import { SearchService } from './../../shared/services/search.service';
 import { Hero } from './../../shared/services/interfaces/interface';
 
 @Component({
@@ -11,28 +12,24 @@ import { Hero } from './../../shared/services/interfaces/interface';
 export class HeroesListComponent implements OnInit {
   selectedHeroes: Hero[];
   lastSelectedHero: Hero;
-  activeHero: any;
   firstInit: boolean = true;
   lastHero: boolean = false;
+  lastActiveHero: Hero;
+  activeHero: Hero;
 
-  constructor(private router: Router) {}
+  constructor(public searchService: SearchService, private router: Router) {}
 
   ngOnInit(): void {
     this.getSelectedHeroes();
   }
 
   getSelectedHeroes(): void {
-    if (this.firstInit) {
-      this.selectedHeroes = JSON.parse(localStorage.getItem('selectedHero'));
-      this.lastSelectedHero = JSON.parse(
-        localStorage.getItem('lastSelectedHero')
-      );
-      this.firstInit = false;
-    }
+    this.selectedHeroes = JSON.parse(localStorage.getItem('selectedHero'));
   }
 
-  onSelectHero(hero: any): void {
+  onSelectHero(hero: Hero): void {
     this.activeHero = hero;
+    localStorage.setItem('activeHero', JSON.stringify(this.activeHero));
   }
 
   goToHeroesSelectPage(): void {

@@ -113,3 +113,16 @@ input {
   color: red;
   cursor: pointer;
 }
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-dialog-container {
+  background: #fff;
+}

@@ -1,5 +1,5 @@
 import { ActivatedRoute, Params } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { switchMap, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
@@ -11,7 +11,7 @@ import { Hero } from '../shared/services/interfaces/interface';
   templateUrl: './hero-info-page.component.html',
   styleUrls: ['./hero-info-page.component.scss'],
 })
-export class HeroInfoPageComponent implements OnInit {
+export class HeroInfoPageComponent implements OnInit, OnDestroy {
   hero: Hero;
   destroy$: Subject<void> = new Subject<void>();
 

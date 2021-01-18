@@ -1,3 +1,4 @@
+import { PowerUpsService } from './../shared/services/power-ups.service';
 import { LoginValidate } from './../shared/loginValidate';
 import { Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
@@ -16,7 +17,11 @@ export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
   signIn: boolean = false;
 
-  constructor(private router: Router, private auth: AuthService) {}
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private powerUpsService: PowerUpsService
+  ) {}
 
   ngOnInit(): void {
     this.loginFormValidate();
@@ -62,6 +67,8 @@ export class LoginPageComponent implements OnInit {
         localStorage.setItem('user', JSON.stringify(user));
       }
     });
+
+    this.powerUpsService.setPowerUpsToLocalStorage();
 
     this.signIn = false;
   }
