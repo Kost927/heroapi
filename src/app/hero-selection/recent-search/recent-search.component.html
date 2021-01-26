@@ -1,0 +1,12 @@
+<div class="container">
+  <p class="recent-search_title">Resent searches:</p>
+  <div class="recent-search_wrapper">
+    <span
+      class="recent-search"
+      *ngFor="let recent of searchService.allRecentSearches"
+      (click)="recentQuerySearch($event)"
+    >
+      {{ recent }}
+    </span>
+  </div>
+</div>

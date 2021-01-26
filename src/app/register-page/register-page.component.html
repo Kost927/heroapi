@@ -1,0 +1,102 @@
+<div class="container">
+  <h2>Registration</h2>
+  <form class="auth-form" [formGroup]="registerForm" (ngSubmit)="submit()">
+    <div class="form-control">
+      <div class="form-fields">
+        <Label for="name">Name:</Label>
+        <input
+          class="input-field"
+          id="name"
+          type="text"
+          placeholder="Please enter your name"
+          formControlName="name"
+          autocomplete="on"
+        />
+      </div>
+      <div class="validation" *ngIf="ngIfNameValidate()">
+        <small class="validate-msg" *ngIf="ngIfNamePattern()"
+          >No special symbols or numbers allowed.</small
+        >
+        <small class="validate-msg" *ngIf="ngIfNameMinLength()">
+          Should be at least
+          {{ ngIfNameRequiredLength() }}
+          characters length. Now
+          {{ ngIfNameActualLength() }}
+          characters.</small
+        >
+        <small class="validate-msg" *ngIf="ngIfNameRequired()"
+          >This field is required.</small
+        >
+      </div>
+    </div>
+
+    <div class="form-control">
+      <div class="form-fields">
+        <Label for="email">Email:</Label>
+        <input
+          class="input-field"
+          id="email"
+          type="text"
+          placeholder="Please enter your email"
+          formControlName="email"
+          autocomplete="on"
+        />
+      </div>
+      <div class="validation" *ngIf="ngIfEmailValidate()">
+        <small class="validate-msg" *ngIf="ngIfEmailRequired()"
+          >This field is required.</small
+        >
+        <small class="validate-msg" *ngIf="ngIfEmail()"
+          >Should write a valid email.</small
+        >
+        <small class="validate-msg" *ngIf="ngIfEmailPattern()">
+          Supports only (.com, .net, .org, .co, .us) domains, only 5 symbols
+          after @ allowed, no more than 3 dots before @</small
+        >
+        <small class="validate-msg" *ngIf="ngIfEmailExist()">
+          Such email already exist</small
+        >
+      </div>
+    </div>
+
+    <div class="form-control">
+      <div class="form-fields">
+        <Label for="password">Password:</Label>
+        <input
+          class="input-field"
+          id="password"
+          type="password"
+          placeholder="Please enter your password"
+          formControlName="password"
+          autocomplete="on"
+        />
+      </div>
+      <div class="validation" *ngIf="ngIfPasswordValidate()">
+        <small class="validate-msg" *ngIf="ngIfPasswordRequired()"
+          >This field is required.</small
+        >
+        <small class="validate-msg" *ngIf="ngIfPasswordMinLength()">
+          Should be at least
+          {{ ngIfPasswordRequiredLength() }}
+          characters length. Now
+          {{ ngIfPasswordActualLength() }}
+          characters.</small
+        >
+        <small class="validate-msg" *ngIf="ngIfPasswordPattern()">
+          Should contain: at least one uppercase letter, one number, one special
+          symbol. $ % . & ! - symbols</small
+        >
+
+        <small class="validate-msg" *ngIf="ngIfPasswordUniq()">
+          Should not contain parts of a user name or email</small
+        >
+      </div>
+    </div>
+
+    <div class="btn-wrapper">
+      <button type="submit" class="btn" [disabled]="registerForm.invalid">
+        Create New User
+      </button>
+    </div>
+  </form>
+</div>

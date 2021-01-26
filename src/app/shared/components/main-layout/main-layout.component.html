@@ -1,0 +1,29 @@
+<nav class="navbar">
+  <h1><a [routerLink]="['/heroselect']">Super Hero App</a></h1>
+  <div *ngIf="!isSelectedHeroes && isDisabled; else selectedHeroes">
+    <button
+      *ngIf="auth.isAuthenticated()"
+      [disabled]="isDisabled"
+      [class.disabled]="isDisabled"
+    >
+      Fight
+    </button>
+  </div>
+  <ng-template #selectedHeroes>
+    <button
+      *ngIf="auth.isAuthenticated()"
+      [class.shine-button]="isSelectedHeroes || !isDisabled"
+      [routerLink]="['/battle']"
+    >
+      Fight
+    </button>
+  </ng-template>
+  <div class="navigate" *ngIf="auth.isAuthenticated()">
+    <p class="user-info" (click)="goToUserInfoPage()">User Info</p>
+    <a [routerLink]="['/login']" class="sign-out" (click)="logout()"
+      >Sign Out</a
+    >
+  </div>
+</nav>
+
+<div class="container"><router-outlet></router-outlet></div>

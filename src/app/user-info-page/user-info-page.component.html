@@ -1,0 +1,37 @@
+<div class="navigation">
+  <ul class="userInfo-list">
+    <li class="userInfo-item">
+      <a
+        class="userInfo-item_text"
+        routerLinkActive="active"
+        [routerLink]="['/userinfo', 'heroeslist']"
+        >Heroes list</a
+      >
+    </li>
+    <li class="userInfo-item">
+      <a
+        class="userInfo-item_text"
+        routerLinkActive="active"
+        [routerLink]="['/userinfo', 'history']"
+        >History</a
+      >
+    </li>
+    <li class="userInfo-item">
+      <a
+        class="userInfo-item_text"
+        routerLinkActive="active"
+        [routerLink]="['/userinfo', 'powerups']"
+        >Power Ups</a
+      >
+    </li>
+  </ul>
+</div>
+<div class="container">
+  <router-outlet></router-outlet>
+  <button
+    class="btn resetSkills-btn"
+    (click)="this.powerUpsService.setPowerUpsToLocalStorage()"
+  >
+    Donate 10$ to reset powerUp skills
+  </button>
+</div>

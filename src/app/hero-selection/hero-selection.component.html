@@ -1,0 +1,76 @@
+<ng-template appRef></ng-template>
+
+<div class="container">
+  <form
+    class="search-form"
+    [formGroup]="searchForm"
+    (ngSubmit)="submitSearch()"
+  >
+    <div class="form-control">
+      <div class="form-fields">
+        <Label class="label">Find your hero</Label>
+        <div class="input-wrapper">
+          <button
+            type="button"
+            (click)="showModal()"
+            class="abc_btn btn"
+            *ngIf="alpha.clickedLetter; else defaultLetter"
+          >
+            {{ alpha.clickedLetter }}
+          </button>
+          <ng-template #defaultLetter>
+            <button type="button" (click)="showModal()" class="abc_btn btn">
+              A
+            </button>
+          </ng-template>
+          <input
+            type="text"
+            placeholder="Please enter the hero name"
+            class="input-field"
+            autocomplete="on"
+            formControlName="search"
+          />
+        </div>
+
+        <div class="validation" *ngIf="ngIfSearchValidation()">
+          <small class="validate-msg" *ngIf="ngIfSearchRequired()"
+            >This field is required</small
+          >
+          <small class="validate-msg" *ngIf="ngIfSearchPattern()"
+            >Use only letters for search</small
+          >
+        </div>
+        <app-recent-search></app-recent-search>
+      </div>
+
+      <div class="loading" *ngIf="loading">
+        <p class="search-msg">Searching...</p>
+      </div>
+    </div>
+  </form>
+
+  <div class="search-results" *ngIf="searchService.heroes">
+    <div class="results">
+      <app-hero-selection-item
+        *ngFor="
+          let hero of searchService.heroes
+            | paginate: { itemsPerPage: 4, currentPage: page }
+        "
+        [hero]="hero"
+      ></app-hero-selection-item>
+    </div>
+
+    <div *ngIf="errorMsg" class="errorMessage">
+      <h2>Error</h2>
+      <p class="error">{{ errorMsg }}</p>
+    </div>
+    <div>
+      <pagination-controls
+        class="pagination"
+        (pageChange)="page = $event"
+        (pageBoundsCorrection)="page = $event"
+        autoHide="true"
+      ></pagination-controls>
+    </div>
+  </div>
+</div>

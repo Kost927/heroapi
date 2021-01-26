@@ -1,0 +1,38 @@
+<div class="container">
+  <table class="history">
+    <thead>
+      <tr>
+        <th class="history-item_header" (click)="sorting('date')">
+          Fight date:
+        </th>
+        <th class="history-item_header" (click)="sorting('heroName')">
+          Your hero name:
+        </th>
+        <th class="history-item_header" (click)="sorting('enemyName')">
+          Your opponent hero name:
+        </th>
+        <th class="history-item_header" (click)="sorting('result')">
+          Fight result:
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let fight of fightHistory">
+        <td class="history-item">{{ fight.date | date: "short" }}</td>
+        <td
+          class="history-item hero-title"
+          [routerLink]="['/heroinfo', fight.heroNameId]"
+        >
+          {{ fight.heroName }}
+        </td>
+        <td
+          class="history-item hero-title"
+          [routerLink]="['/heroinfo', fight.enemyNameId]"
+        >
+          {{ fight.enemyName }}
+        </td>
+        <td class="history-item">{{ fight.result }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

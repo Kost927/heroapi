@@ -1,0 +1,30 @@
+.powerup-list {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 15px;
+  margin-bottom: 20px;
+  padding: 1rem;
+}
+
+.powerup-img {
+  width: 70px;
+  height: 70px;
+}
+
+.powerup-item_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.powerup-title {
+  color: red;
+  font-size: 20px;
+}
+
+.disabled {
+  background: rgb(207, 207, 207);
+  color: rgb(122, 122, 122);
+}

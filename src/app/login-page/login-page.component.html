@@ -1,0 +1,59 @@
+<div class="container">
+  <h2>Log In</h2>
+
+  <form class="auth-form" [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+    <div class="form-control">
+      <div class="form-fields">
+        <Label>Email:</Label>
+        <input
+          type="text"
+          placeholder="Please enter your email"
+          class="input-field"
+          autocomplete="on"
+          formControlName="currentEmail"
+        />
+      </div>
+      <div class="validation" *ngIf="ngIfEmailValidation()">
+        <small class="validate-msg" *ngIf="ngIfEmailRequired()"
+          >This field is required.</small
+        >
+        <small class="validate-msg" *ngIf="ngIfEmail()"
+          >Should write a valid email.</small
+        >
+        <small class="validate-msg" *ngIf="ngIfEmailExist()"
+          >This email doesn't exist</small
+        >
+      </div>
+    </div>
+
+    <div class="form-control">
+      <div class="form-fields">
+        <Label>Password:</Label>
+        <input
+          type="password"
+          placeholder="Please enter your password"
+          class="input-field"
+          autocomplete="on"
+          formControlName="currentPassword"
+        />
+      </div>
+      <div class="validation" *ngIf="ngIfPasswordValidation()">
+        <small class="validate-msg" *ngIf="ngIfPasswordRequired()"
+          >This field is required.</small
+        >
+        <small class="validate-msg" *ngIf="ngIfPasswordExist()"
+          >Wrong password</small
+        >
+      </div>
+    </div>
+
+    <div class="btn-wrapper">
+      <button type="submit" class="btn" [disabled]="loginForm.invalid">
+        Log In
+      </button>
+      <button type="button" class="btn" (click)="navigateToRegisterPage()">
+        Create new account
+      </button>
+    </div>
+  </form>
+</div>
