@@ -26,4 +26,12 @@
     </li>
   </ul>
 </div>
-<div class="container"><router-outlet></router-outlet></div>
+<div class="container">
+  <router-outlet></router-outlet>
+  <button
+    class="btn resetSkills-btn"
+    (click)="this.powerUpsService.setPowerUpsToLocalStorage()"
+  >
+    Donate 10$ to reset powerUp skills
+  </button>
+</div>

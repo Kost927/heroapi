@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
   Component,
@@ -12,8 +13,8 @@ import { catchError } from 'rxjs/operators';
 import { RefDirective } from './../shared/ref.directive';
 import { AlphabetService } from './../shared/services/alphabet.service';
 import { SearchService } from './../shared/services/search.service';
-import constants from '../shared/constants';
 import { AlphabetComponent } from '../alphabet/alphabet.component';
+import constants from '../shared/constants';
 
 @Component({
   selector: 'app-hero-selection',
@@ -23,16 +24,17 @@ import { AlphabetComponent } from '../alphabet/alphabet.component';
 export class HeroSelectionComponent implements OnInit {
   @ViewChild(RefDirective) refDir: RefDirective;
 
-  public loading: boolean;
-  public page: number = 1;
-  public errorMsg: any;
-  public searchForm: FormGroup;
-  public isSelected: boolean = false;
+  loading: boolean;
+  page: number = 1;
+  errorMsg: any;
+  searchForm: FormGroup;
+  isSelected: boolean = false;
 
   constructor(
     public searchService: SearchService,
     public alpha: AlphabetService,
-    private resolver: ComponentFactoryResolver
+    private resolver: ComponentFactoryResolver,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -79,19 +81,9 @@ export class HeroSelectionComponent implements OnInit {
       });
   }
 
-  selectHero(event): void {
-    this.searchService.heroes.forEach((hero) => {
-      if (event.target.id === hero.id) {
-        this.searchService.selectHero(hero);
-        localStorage.setItem('lastSelectedHero', JSON.stringify(hero));
-        event.target.disabled = true;
-      }
-    });
-  }
-
   @HostListener('window:keyup', ['$event'])
-  keyEvent(event: KeyboardEvent): void {
-    if (event.key === 'Escape') {
+  keyEvent({ key }: KeyboardEvent): void {
+    if (key === constants.ESCAPE) {
       this.refDir.containerRef.clear();
     }
   }
@@ -106,6 +98,10 @@ export class HeroSelectionComponent implements OnInit {
     component.instance.close.subscribe(() => {
       this.refDir.containerRef.clear();
     });
+  }
+
+  goToHeroInfoPage(): void {
+    this.router.navigate(['/userinfo']);
   }
 
   ngIfSearchValidation(): boolean {

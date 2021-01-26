@@ -1,0 +1,140 @@
+<div class="container">
+  <div class="heroes_wrapper">
+    <img
+      class="heroes-list_img"
+      src="{{ selectedHero.image.url }}"
+      alt="{{ selectedHero.name }}"
+    />
+
+    <div class="second-block_wrapper">
+      <h3 class="hero-title">
+        <a [routerLink]="['/heroinfo', selectedHero.id]">{{
+          selectedHero.name
+        }}</a>
+      </h3>
+      <ul class="hero-powerstats_list">
+        <li
+          class="hero-powerstats_item"
+          *ngIf="selectedHero.powerstats.combat !== 'null'"
+        >
+          <span>Combat: {{ selectedHero.powerstats.combat }}</span>
+        </li>
+        <li
+          class="hero-powerstats_item"
+          *ngIf="selectedHero.powerstats.durability !== 'null'"
+        >
+          <span>Durability: {{ selectedHero.powerstats.durability }}</span>
+        </li>
+        <li
+          class="hero-powerstats_item"
+          *ngIf="selectedHero.powerstats.intelligence !== 'null'"
+        >
+          <span>Intelligence: {{ selectedHero.powerstats.intelligence }}</span>
+        </li>
+        <li
+          class="hero-powerstats_item"
+          *ngIf="selectedHero.powerstats.power !== 'null'"
+        >
+          <span>Power: {{ selectedHero.powerstats.power }}</span>
+        </li>
+        <li
+          class="hero-powerstats_item"
+          *ngIf="selectedHero.powerstats.speed !== 'null'"
+        >
+          <span>Speed: {{ selectedHero.powerstats.speed }}</span>
+        </li>
+        <li
+          class="hero-powerstats_item"
+          *ngIf="selectedHero.powerstats.strength !== 'null'"
+        >
+          <span>Strength: {{ selectedHero.powerstats.strength }}</span>
+        </li>
+        <li>
+          <span>Total power: {{ selectedHeroPower }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="battle_block">
+    <h3 class="hero-title fight-title">
+      <a [routerLink]="['/heroinfo', selectedHero.id]">{{
+        selectedHero.name
+      }}</a>
+    </h3>
+    <p class="vs">- VS -</p>
+    <h3 class="hero-title fight-title">
+      <a [routerLink]="['/heroinfo', enemyHero?.id]">{{ enemyHero?.name }}</a>
+    </h3>
+    <button class="btn fight-btn" (click)="battle()" [disabled]="loading">
+      Start Fight
+    </button>
+    <div *ngIf="loading">
+      <h2>FIGHTING...</h2>
+    </div>
+  </div>
+
+  <div class="heroes_wrapper">
+    <img
+      class="heroes-list_img"
+      src="{{ enemyHero?.image.url }}"
+      alt="{{ enemyHero?.name }}"
+    />
+    <div class="second-block_wrapper">
+      <h3 class="hero-title">
+        <a [routerLink]="['/heroinfo', enemyHero?.id]">{{ enemyHero?.name }}</a>
+      </h3>
+      <ul class="hero-powerstats_list">
+        <li
+          class="hero-powerstats_item"
+          *ngIf="enemyHero?.powerstats.combat !== 'null'"
+        >
+          <span>Combat: {{ enemyHero?.powerstats.combat }}</span>
+        </li>
+        <li
+          class="hero-powerstats_item"
+          *ngIf="enemyHero?.powerstats.durability !== 'null'"
+        >
+          <span>Durability: {{ enemyHero?.powerstats.durability }}</span>
+        </li>
+        <li
+          class="hero-powerstats_item"
+          *ngIf="enemyHero?.powerstats.intelligence !== 'null'"
+        >
+          <span>Intelligence: {{ enemyHero?.powerstats.intelligence }}</span>
+        </li>
+        <li
+          class="hero-powerstats_item"
+          *ngIf="enemyHero?.powerstats.power !== 'null'"
+        >
+          <span>Power: {{ enemyHero?.powerstats.power }}</span>
+        </li>
+        <li
+          class="hero-powerstats_item"
+          *ngIf="enemyHero?.powerstats.speed !== 'null'"
+        >
+          <span>Speed: {{ enemyHero?.powerstats.speed }}</span>
+        </li>
+        <li
+          class="hero-powerstats_item"
+          *ngIf="enemyHero?.powerstats.strength !== 'null'"
+        >
+          <span>Strength: {{ enemyHero?.powerstats.strength }}</span>
+        </li>
+        <li>
+          <span>Total Power: {{ enemyHeroPower }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="power-ups_wrapper">
+  <app-battle-power-ups
+    (click)="powerup.usesLeft === 0 ? null : addPowerUps()"
+    [selectedHero]="selectedHero"
+    *ngFor="let powerup of powerups"
+    [powerup]="powerup"
+  >
+  </app-battle-power-ups>
+</div>

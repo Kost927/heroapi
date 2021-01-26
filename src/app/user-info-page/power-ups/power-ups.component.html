@@ -1,1 +1,6 @@
-<p>power-ups works!</p>
+<div class="container">
+  <app-power-ups-info
+    *ngFor="let powerup of powerUpsService.filteredPowerUps"
+    [powerup]="powerup"
+  ></app-power-ups-info>
+</div>

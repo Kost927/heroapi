@@ -1,5 +1,6 @@
-import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+
+import { PowerUpsService } from './../shared/services/power-ups.service';
 
 @Component({
   selector: 'app-user-info-page',
@@ -7,9 +8,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-info-page.component.scss'],
 })
 export class UserInfoPageComponent {
-  constructor(private router: Router) {}
-
-  goToHeroesListTab() {
-    this.router.navigate(['/heroeslist']);
-  }
+  constructor(public powerUpsService: PowerUpsService) {}
 }

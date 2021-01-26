@@ -13,6 +13,9 @@ export interface NewUser {
 export interface Hero {
   id: string;
   name: string;
+  biography?: object;
+  appearance?: object;
+  work?: object;
   image: { url: string };
   powerstats: PowerStats;
 }
@@ -24,4 +27,25 @@ export interface PowerStats {
   power: string;
   speed: string;
   strength: string;
+}
+
+export interface History {
+  date: Date;
+  heroName: string;
+  heroNameId: string;
+  enemyName: string;
+  enemyNameId: string;
+  result: 'win' | 'lose';
+}
+
+export interface PowerUp {
+  title: string;
+  image: string;
+  description: string;
+  usesLeft: number;
+  isSelected?: boolean;
+}
+
+export interface DialogData {
+  result: 'win' | 'lose';
 }

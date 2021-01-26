@@ -1,6 +1,8 @@
 import { Router } from '@angular/router';
-import { Hero } from './../../shared/services/interfaces/interface';
 import { Component, OnInit } from '@angular/core';
+
+import { SearchService } from './../../shared/services/search.service';
+import { Hero } from './../../shared/services/interfaces/interface';
 
 @Component({
   selector: 'app-heroes-list',
@@ -10,31 +12,27 @@ import { Component, OnInit } from '@angular/core';
 export class HeroesListComponent implements OnInit {
   selectedHeroes: Hero[];
   lastSelectedHero: Hero;
-  activeHero: any;
   firstInit: boolean = true;
   lastHero: boolean = false;
+  lastActiveHero: Hero;
+  activeHero: Hero;
 
-  constructor(private router: Router) {}
+  constructor(public searchService: SearchService, private router: Router) {}
 
   ngOnInit(): void {
     this.getSelectedHeroes();
   }
 
-  public getSelectedHeroes(): void {
-    if (this.firstInit) {
-      this.selectedHeroes = JSON.parse(localStorage.getItem('selectedHero'));
-      this.lastSelectedHero = JSON.parse(
-        localStorage.getItem('lastSelectedHero')
-      );
-      this.firstInit = false;
-    }
+  getSelectedHeroes(): void {
+    this.selectedHeroes = JSON.parse(localStorage.getItem('selectedHero'));
   }
 
-  public onSelectHero(hero: any): void {
+  onSelectHero(hero: Hero): void {
     this.activeHero = hero;
+    localStorage.setItem('activeHero', JSON.stringify(this.activeHero));
   }
 
-  public goToHeroesSelectPage() {
+  goToHeroesSelectPage(): void {
     this.router.navigate(['/heroselect']);
   }
 }

@@ -2,13 +2,17 @@
     "cSpell.words": [
         "heroapi",
         "heroeslist",
+        "heroinfo",
         "heroselect",
+        "keyvalue",
         "minlenth",
         "powerups",
         "userinfo"
     ],
     "html.format.wrapLineLength": 100,
     "cSpell.ignoreWords": [
+        "downlevel",
+        "iteration",
         "powerstats"
     ]
 }

@@ -40,15 +40,7 @@
             >Use only letters for search</small
           >
         </div>
-
-        <p class="recent-search_title">Resent searches:</p>
-        <div class="recent-search_wrapper">
-          <span
-            class="recent-search"
-            *ngFor="let recent of searchService.allRecentSearches"
-            >{{ recent }}
-          </span>
-        </div>
+        <app-recent-search></app-recent-search>
       </div>
 
       <div class="loading" *ngIf="loading">
@@ -59,58 +51,26 @@
 
   <div class="search-results" *ngIf="searchService.heroes">
     <div class="results">
-      <div
-        class="heroes-list"
+      <app-hero-selection-item
         *ngFor="
           let hero of searchService.heroes
             | paginate: { itemsPerPage: 4, currentPage: page }
         "
-      >
-        <img
-          class="hero-image"
-          src="{{ hero.image.url }}"
-          alt="{{ hero.name }}"
-        />
-        <h3>
-          {{ hero.name }}
-        </h3>
-        <ul>
-          <li *ngIf="hero.powerstats.combat !== 'null'">
-            <span>Combat: {{ hero.powerstats.combat }}</span>
-          </li>
-          <li *ngIf="hero.powerstats.durability !== 'null'">
-            <span>Durability: {{ hero.powerstats.durability }}</span>
-          </li>
-          <li *ngIf="hero.powerstats.intelligence !== 'null'">
-            <span>Intelligence: {{ hero.powerstats.intelligence }}</span>
-          </li>
-          <li *ngIf="hero.powerstats.power !== 'null'">
-            <span>Power: {{ hero.powerstats.power }}</span>
-          </li>
-          <li *ngIf="hero.powerstats.speed !== 'null'">
-            <span>Speed: {{ hero.powerstats.speed }}</span>
-          </li>
-          <li *ngIf="hero.powerstats.strength !== 'null'">
-            <span>Strength: {{ hero.powerstats.strength }}</span>
-          </li>
-        </ul>
-        <button
-          type="button"
-          class="btn"
-          (click)="selectHero($event)"
-          data-id="{{ hero.id }}"
-        >
-          select
-        </button>
-      </div>
+        [hero]="hero"
+      ></app-hero-selection-item>
+    </div>
 
-      <div *ngIf="errorMsg" class="errorMessage">
-        <h2>Error</h2>
-        <p class="error">{{ errorMsg }}</p>
-      </div>
+    <div *ngIf="errorMsg" class="errorMessage">
+      <h2>Error</h2>
+      <p class="error">{{ errorMsg }}</p>
     </div>
     <div>
-      <pagination-controls (pageChange)="page = $event"></pagination-controls>
+      <pagination-controls
+        class="pagination"
+        (pageChange)="page = $event"
+        (pageBoundsCorrection)="page = $event"
+        autoHide="true"
+      ></pagination-controls>
     </div>
   </div>
 </div>

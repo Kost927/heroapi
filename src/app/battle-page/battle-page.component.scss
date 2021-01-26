@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.heroes_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.heroes-list_img {
+  width: 300px;
+}
+
+.power-ups_wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mat-dialog-container {
+  background-color: #fff;
+}
+
+.battle_block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.vs {
+  font-size: 50px;
+  color: red;
+}
+
+.fight-title {
+  margin-bottom: 15px;
+  font-size: 30px;
+}
+
+.fight-btn {
+  margin-bottom: 15px;
+}

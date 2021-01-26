@@ -1,9 +1,11 @@
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+
+import { LoginValidate } from './../shared/loginValidate';
 import { AuthService } from './../shared/services/auth.service';
 import { NewUser } from './../shared/services/interfaces/interface';
 import { PasswordValidate } from './../shared/passwordValidate';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
 import constants from '../shared/constants';
 
 @Component({
@@ -31,6 +33,7 @@ export class RegisterPageComponent implements OnInit {
         Validators.required,
         Validators.email,
         Validators.pattern(constants.EMAIL_VALIDATE),
+        LoginValidate.existRegisterEmail,
       ]),
       password: new FormControl('', [
         Validators.required,
@@ -104,6 +107,10 @@ export class RegisterPageComponent implements OnInit {
 
   ngIfEmailPattern(): void {
     return this.registerForm.get('email').errors.pattern;
+  }
+
+  ngIfEmailExist(): void {
+    return this.registerForm.get('email').errors.emailValidator;
   }
 
   ngIfPasswordValidate(): boolean {

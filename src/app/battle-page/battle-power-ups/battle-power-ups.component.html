@@ -1,0 +1,12 @@
+<button
+  class="powerup-btn"
+  (click)="selectPowerUp()"
+  [class.selected]="powerup.isSelected"
+  [disabled]="powerup.usesLeft === 0"
+>
+  <h4 class="powerup-title">
+    {{ powerup.title }}
+  </h4>
+  <span>{{ powerup.description }}</span>
+  <span>uses left: {{ powerup.usesLeft }}</span>
+</button>

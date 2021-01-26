@@ -1,6 +1,6 @@
-import { Hero } from './interfaces/interface';
 import { Injectable } from '@angular/core';
 
+import { Hero } from './interfaces/interface';
 import constants from '../constants';
 
 @Injectable({
@@ -8,14 +8,12 @@ import constants from '../constants';
 })
 export class AlphabetService {
   clickedLetter: string;
-  public baseUrl: string = constants.BASE_URL;
+  baseUrl: string = constants.BASE_URL;
   heroes: Hero[];
 
-  constructor() {}
-
-  pickLetter(event): void {
-    if (event.target.textContent) {
-      this.clickedLetter = event.target.textContent;
+  pickLetter({ target }): void {
+    if (target.textContent) {
+      this.clickedLetter = target.textContent;
     }
   }
 }
